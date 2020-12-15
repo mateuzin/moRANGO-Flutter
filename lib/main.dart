@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:morango_app/Screens/HomeScreen.dart';
+import 'package:morango_app/Screens/forgot.dart';
+import 'package:morango_app/Screens/forgot2.dart';
 import 'package:morango_app/Screens/signin_screen.dart';
 import 'package:morango_app/screens/Mix_Screen.dart';
 
