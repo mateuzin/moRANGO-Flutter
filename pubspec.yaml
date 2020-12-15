@@ -32,6 +32,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  material_design_icons_flutter: ^3.2.3895
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -52,9 +53,11 @@ flutter:
     - images/SinginScreenBackground.jpg
     - images/morango.Singin.png
     - images/morango.appbar.png
-    - images/facebook.png
-    - images/google.png
     - images/linha_preta.png
+    - images/DrawerUpImage.png
+    - images/morango.drawer.png
+    - images/morangoG.drawer.png
+    - images/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -78,6 +81,10 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:
+    - family: Mix
+      fonts:
+        - asset: icons/Mix.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
