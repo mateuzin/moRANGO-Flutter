@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:morango_app/screens/home_screen.dart';
-
-import 'package:morango_app/screens/mix_screen.dart';
+import 'package:morango_app/Screens/forgot.dart';
+import 'package:morango_app/Screens/forgot2.dart';
+import 'package:morango_app/Screens/signin_screen.dart';
+import 'package:morango_app/screens/Mix_Screen.dart';
 
 
 void main(){
@@ -15,8 +16,8 @@ class MyApp extends StatelessWidget {
         title: 'moRANGO',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: const Color.fromARGB(255,75,75,75),
-          scaffoldBackgroundColor: const Color.fromARGB(255,50,50,50),
+          primaryColor: const  Color.fromRGBO(255, 144, 144, 1),
+          scaffoldBackgroundColor: const  Color.fromRGBO(255, 144, 144, 1),
           appBarTheme: const AppBarTheme(
               elevation: 0
           ),
@@ -30,9 +31,9 @@ class MyApp extends StatelessWidget {
               );
             case '/':
             default:
-              return MaterialPageRoute(
-                  builder: (_) => HomeScreen()
-              );
+            return MaterialPageRoute(
+                builder: (_) => MixScreen()
+            );
           }
         }
     );

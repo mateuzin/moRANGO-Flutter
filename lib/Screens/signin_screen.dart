@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
@@ -17,7 +17,7 @@ class _SigninScreenState extends State<SigninScreen> {
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 144, 144, 1),
           title:
-              Image.asset("images/morango.appbar.png", height: 50, width: 119), //imagem do appbar possivelmente tirar**
+          Image.asset("images/morango.appbar.png", height: 50, width: 119), //imagem do appbar possivelmente tirar**
           centerTitle: true,
         ),
         backgroundColor: Colors.white,

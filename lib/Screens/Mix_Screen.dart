@@ -116,7 +116,7 @@ class MixScreen extends StatelessWidget {
                   ),
                 ), //ingredientes 2
                 Container(
-                  padding: EdgeInsets.fromLTRB(25, 251, 29, 14),
+                  padding: EdgeInsets.fromLTRB(25, 150, 29, 14),
                   child:
                   RaisedButton(
                     onPressed: () {},
