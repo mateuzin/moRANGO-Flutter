@@ -181,102 +181,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 ],
               ),
             ),
-            /*Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(top: 10.0, right: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color.fromRGBO(110, 213, 161, 1),
-                        labelText: "Ingrediente 1",
-                        labelStyle:
-                            TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        icon: IconButton(
-                          icon: Icon(Icons.delete),
-                          iconSize: 25,
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(top: 10.0, right: 10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color.fromRGBO(110, 213, 161, 1),
-                        labelText: "Ingrediente 2",
-                        labelStyle:
-                            TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        icon: IconButton(
-                          icon: Icon(Icons.delete),
-                          iconSize: 25,
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),*/
-            /*Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 15, 10, 10),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color.fromRGBO(110, 213, 161, 1),
-                        labelText: "Ingrediente 3",
-                        labelStyle:
-                            TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        icon: IconButton(
-                          icon: Icon(Icons.delete),
-                          iconSize: 25,
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 15, 10, 10),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color.fromRGBO(110, 213, 161, 1),
-                        labelText: "Ingrediente 4",
-                        labelStyle:
-                            TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        icon: IconButton(
-                          icon: Icon(Icons.delete),
-                          iconSize: 25,
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),*/
             Container(
               padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
               child: Row(
@@ -319,7 +223,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ],
               ),
             ),
-            Container(
+            Container( // pesquisar
               padding: EdgeInsets.fromLTRB(20, 60, 20, 7),
               child: RaisedButton.icon(
                 icon: Icon(

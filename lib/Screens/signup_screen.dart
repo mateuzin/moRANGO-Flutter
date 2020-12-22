@@ -180,7 +180,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ), // botão de aceitar termos
                 Container(
-                  //botão de entrar
+                  // botão de entrar
                   padding: EdgeInsets.fromLTRB(20, 30, 20, 50),
                   child: RaisedButton.icon(
                     color: Color.fromRGBO(0, 194, 122, 1),
