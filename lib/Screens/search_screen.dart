@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:morango_app/mix_icons.dart';
+import 'package:morango_app/widgets/app_bar.dart';
+import 'package:morango_app/widgets/custom_drawer.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -12,18 +15,12 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(255, 144, 144, 1),
-        title: Image.asset("images/morango.appbar.png", height: 50, width: 119),
-        centerTitle: true,
-        actions: [
-          IconButton(icon: Icon(Icons.search), iconSize: 28.0, onPressed: () {})
-        ],
+      drawer: CustomDrawer(),
+      appBar: PreferredSize(
+        child: Appbar(),
+        preferredSize: Size.fromHeight(50),
       ),
-      backgroundColor: Colors.pink[100],
-      drawer: Drawer(
-        child: ListView(),
-      ),
+      backgroundColor: Color.fromRGBO(255, 166, 166, 1),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -40,6 +37,32 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             Container(
+              padding: EdgeInsets.fromLTRB(18, 6, 29, 14),
+              child: TextField(
+                style: TextStyle(color: Colors.white),
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  filled: true,
+                  fillColor: Color.fromRGBO(110, 213, 161, 1),
+                  labelText: "Pesquise receitas pelo nome",
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(110, 213, 161, 1),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            /*Container(
               padding: EdgeInsets.fromLTRB(0, 20, 10, 7),
               child: TextFormField(
                 decoration: InputDecoration(
@@ -63,8 +86,34 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
               ),
-            ),
+            ),*/
             Container(
+              padding: EdgeInsets.fromLTRB(18, 6, 29, 14),
+              child: TextField(
+                style: TextStyle(color: Colors.white),
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.fastfood_outlined,
+                    color: Colors.white,
+                  ),
+                  filled: true,
+                  fillColor: Color.fromRGBO(110, 213, 161, 1),
+                  labelText: "Pesquise receitas pelos ingredientes",
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(110, 213, 161, 1),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            /*Container(
               padding: EdgeInsets.fromLTRB(0, 10, 10, 7),
               child: TextFormField(
                 decoration: InputDecoration(
@@ -89,8 +138,50 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
               ),
+            ),*/
+            Container(
+              padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 6),
+                    width: 114,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(110, 213, 161, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    child: Text(
+                      "Ingrendiente1",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    child: Text("  "),
+                  ), //só um espacin
+                  Container(
+                    padding: EdgeInsets.only(top: 6),
+                    width: 114,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(110, 213, 161, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    child: Text(
+                      "Ingrendiente2",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Row(
+            /*Row(
               children: [
                 Expanded(
                   child: Container(
@@ -137,8 +228,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ],
-            ),
-            Row(
+            ),*/
+            /*Row(
               children: [
                 Expanded(
                   child: Container(
@@ -185,13 +276,56 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
               ],
+            ),*/
+            Container(
+              padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 6),
+                    width: 114,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(110, 213, 161, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    child: Text(
+                      "Ingrendiente3",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    child: Text("  "),
+                  ), //só um espacin
+                  Container(
+                    padding: EdgeInsets.only(top: 6),
+                    width: 114,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(110, 213, 161, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                    child: Text(
+                      "Ingrendiente4",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(20, 25, 20, 7),
+              padding: EdgeInsets.fromLTRB(20, 60, 20, 7),
               child: RaisedButton.icon(
                 icon: Icon(
                   Icons.search,
                   color: Colors.white,
+                  size: 46,
                 ),
                 label: Text(
                   "Pesquisar",
@@ -200,7 +334,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: Color.fromRGBO(110, 213, 161, 1),
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
+                    borderRadius: BorderRadius.circular(25.0),
                     side: BorderSide(
                       color: Color.fromRGBO(0, 194, 122, 1),
                     )),
@@ -211,15 +345,20 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromRGBO(255, 144, 144, 1),
-        items: const <BottomNavigationBarItem>[
+        currentIndex: 0,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.home_outlined, color: Colors.white, size: 35),
+              backgroundColor: Color.fromRGBO(255, 144, 144, 1),
+              title: Text("Home",
+                  style: TextStyle(color: Colors.white, fontSize: 0))),
           BottomNavigationBarItem(
-            icon: Icon(Icons.kitchen_outlined),
-            label: 'Cozinhar',
-          ),
+              icon: Icon(Mix.batedeira, color: Colors.white, size: 35),
+              backgroundColor: Color.fromRGBO(255, 144, 144, 1),
+              title: Text(
+                "Mix",
+                style: TextStyle(color: Colors.white, fontSize: 0),
+              )),
         ],
         fixedColor: Colors.white,
         unselectedItemColor: Colors.white,
