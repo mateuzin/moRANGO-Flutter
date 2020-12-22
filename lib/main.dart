@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:morango_app/Screens/forgot.dart';
-import 'package:morango_app/Screens/forgot2.dart';
-import 'package:morango_app/Screens/signin_screen.dart';
 import 'package:morango_app/screens/Mix_Screen.dart';
 import 'package:morango_app/screens/home_screen.dart';
+import 'package:morango_app/screens/recipes_screen.dart';
+import 'package:morango_app/screens/search_screen.dart';
 
 
 void main(){
@@ -26,6 +25,14 @@ class MyApp extends StatelessWidget {
         ),
         onGenerateRoute: (settings){
           switch(settings.name){
+            case '/search':
+              return MaterialPageRoute(
+                  builder: (_) => SearchScreen()
+              );
+            case '/recipes':
+              return MaterialPageRoute(
+                  builder: (_) => RecipesScreen()
+              );
             case '/mix':
               return MaterialPageRoute(
                   builder: (_) => MixScreen()
