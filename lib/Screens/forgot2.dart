@@ -83,7 +83,7 @@ class Forgot2 extends StatelessWidget {
                 size: 35,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {Navigator.of(context).pushNamed('/');},
             ),
             Divider(
               height: 45,

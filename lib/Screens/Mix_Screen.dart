@@ -120,11 +120,12 @@ class MixScreen extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(25, 150, 29, 14),
                   child:
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.of(context).pushNamed('/recipes');},
                     color: Color.fromRGBO(110, 213, 161, 1),
                       child:
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: <Widget>[
                           Icon(Mix.mix,size: 100,color: Colors.white,),
                           Text("  Gerar \nReceitas",style: TextStyle(color: Colors.white,fontSize: 48),),

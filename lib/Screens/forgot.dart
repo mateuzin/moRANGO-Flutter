@@ -144,7 +144,7 @@ class Forgot extends StatelessWidget {
                     ),
                     child: SizedBox.expand(
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).pushNamed('/forgot2');},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

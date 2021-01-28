@@ -194,7 +194,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       color: Colors.white,
                       size: 50,
                     ),
-                    onPressed: () {},
+                    onPressed: () {Navigator.of(context).pushNamed('/');},
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(

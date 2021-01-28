@@ -10,7 +10,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
             icon: IconButton(icon: Icon(Icons.home,color: Colors.white,size: 35,),
-              onPressed: (){Navigator.of(context).pushNamed('/');},),
+              onPressed: (){Navigator.of(context).pushNamed('/home');},),
             backgroundColor: Color.fromRGBO(255,144,144,1),
             title: Text("Home",style: TextStyle(color: Colors.white,fontSize: 0),)
         ),

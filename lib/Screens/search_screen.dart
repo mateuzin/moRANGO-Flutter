@@ -236,7 +236,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   style: TextStyle(fontSize: 17.23, color: Colors.white),
                 ),
                 color: Color.fromRGBO(110, 213, 161, 1),
-                onPressed: () {},
+                onPressed: () {Navigator.of(context).pushNamed('/recipes');},
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     side: BorderSide(

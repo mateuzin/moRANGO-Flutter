@@ -63,11 +63,19 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold
                                   ),),
-                                Text("40~50 *",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(153, 241, 105, 105),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold))
+                                Row(
+                                  children: [
+                                    Text("40~50",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(153, 241, 105, 105),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold)),
+                                    Icon(
+                                        Icons.av_timer,
+                                        color: Colors.red
+                                    )
+                                  ],
+                                )
                               ],
                             ),
                           ],
@@ -111,11 +119,19 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold
                                   ),),
-                                Text("40~50 *",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(153, 241, 105, 105),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold))
+                                Row(
+                                  children: [
+                                    Text("40~50",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(153, 241, 105, 105),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold)),
+                                    Icon(
+                                        Icons.av_timer,
+                                        color: Colors.red
+                                    )
+                                  ],
+                                )
                               ],
                             ),
                           ],
@@ -171,11 +187,19 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold
                                   ),),
-                                Text("40~50 *",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(153, 241, 105, 105),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold))
+                                Row(
+                                  children: [
+                                    Text("40~50",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(153, 241, 105, 105),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold)),
+                                    Icon(
+                                        Icons.av_timer,
+                                        color: Colors.red
+                                    )
+                                  ],
+                                )
                               ],
                             ),
                           ],
@@ -219,11 +243,19 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold
                                   ),),
-                                Text("40~50 *",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(153, 241, 105, 105),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold))
+                                Row(
+                                  children: [
+                                    Text("40~50",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(153, 241, 105, 105),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold)),
+                                    Icon(
+                                      Icons.av_timer,
+                                      color: Colors.red
+                                    )
+                                  ],
+                                )
                               ],
                             ),
                           ],
