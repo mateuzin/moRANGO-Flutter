@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:morango_app/mix_icons.dart';
 import 'package:morango_app/widgets/app_bar.dart';
+import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
 
 class MixScreen extends StatelessWidget {
@@ -139,22 +140,7 @@ class MixScreen extends StatelessWidget {
             ),
           ),
         ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromRGBO(255,144,144,1),
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home,color: Colors.white,size: 35,),
-              backgroundColor: Color.fromRGBO(255,144,144,1),
-              title: Text("Home",style: TextStyle(color: Colors.white,fontSize: 0),)
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Mix.batedeira,color: Colors.white,size: 35,),
-              backgroundColor: Color.fromRGBO(255,144,144,1),
-              title: Text("Mix",style: TextStyle(color: Colors.white,fontSize: 0),)
-          ),
-        ],
-      ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }
