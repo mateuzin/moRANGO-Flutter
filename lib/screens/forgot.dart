@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: Homepage(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
-
-class Homepage extends StatelessWidget {
+class Forgot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 45,
+        toolbarHeight: 50,
         backgroundColor: Color.fromRGBO(255, 144, 144, 1),
         leading: Icon(
           Icons.arrow_back_outlined,
+          color: Colors.white,
           size: 35,
         ),
         title: Image.asset(
@@ -69,15 +63,15 @@ class Homepage extends StatelessWidget {
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
+                                  BorderRadius.all(Radius.circular(50)),
                                   borderSide:
-                                      BorderSide(color: Colors.greenAccent),
+                                  BorderSide(color: Colors.greenAccent),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
+                                  BorderRadius.all(Radius.circular(50)),
                                   borderSide:
-                                      BorderSide(color: Colors.green[900]),
+                                  BorderSide(color: Colors.green[900]),
                                 ),
                                 filled: true,
                                 fillColor: Colors.greenAccent,
@@ -111,15 +105,15 @@ class Homepage extends StatelessWidget {
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
+                                  BorderRadius.all(Radius.circular(50)),
                                   borderSide:
-                                      BorderSide(color: Colors.greenAccent),
+                                  BorderSide(color: Colors.greenAccent),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
+                                  BorderRadius.all(Radius.circular(50)),
                                   borderSide:
-                                      BorderSide(color: Colors.green[900]),
+                                  BorderSide(color: Colors.green[900]),
                                 ),
                                 filled: true,
                                 fillColor: Colors.greenAccent,
@@ -150,7 +144,7 @@ class Homepage extends StatelessWidget {
                     ),
                     child: SizedBox.expand(
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).pushNamed('/forgot2');},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -178,3 +172,4 @@ class Homepage extends StatelessWidget {
     );
   }
 }
+

@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
@@ -17,7 +17,7 @@ class _SigninScreenState extends State<SigninScreen> {
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 144, 144, 1),
           title:
-              Image.asset("images/morango.appbar.png", height: 50, width: 119), //imagem do appbar possivelmente tirar**
+          Image.asset("images/morango.appbar.png", height: 50, width: 119), //imagem do appbar possivelmente tirar**
           centerTitle: true,
         ),
         backgroundColor: Colors.white,
@@ -83,7 +83,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   RaisedButton(
                     color: Color.fromRGBO(0,194,122,1),
                     child: Text("ENTRAR",style: TextStyle(color: Colors.white),),
-                    onPressed: (){},
+                    onPressed: (){Navigator.of(context).pushNamed('/home');},
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Color.fromRGBO(0,194,122,1),)
@@ -116,7 +116,8 @@ class _SigninScreenState extends State<SigninScreen> {
                     ],
                   ),
                 ),//icones facebook e google
-                Container(//esqueceu a senha
+                FlatButton(//esqueceu a senha
+                  onPressed: (){Navigator.of(context).pushNamed('/forgot1');},
                   child: Text("Esqueceu sua senha?", style: TextStyle(
                     fontSize: 12,
                   ),),
@@ -129,7 +130,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     child: Text("CADASTRE-SE GRATUITAMENTE",
                       style: TextStyle(fontSize: 17.23,color: Colors.white),
                     ),
-                    onPressed: (){},
+                    onPressed: (){Navigator.of(context).pushNamed('/signup');},
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Color.fromRGBO(0,194,122,1),)

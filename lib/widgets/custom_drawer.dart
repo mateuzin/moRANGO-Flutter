@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:morango_app/Tiles/drawer_tile.dart';
+import 'package:morango_app/tiles/drawer_tile.dart';
 
 
 class CustomDrawer extends StatelessWidget {
@@ -12,6 +12,7 @@ class CustomDrawer extends StatelessWidget {
 
     Widget _buildDrawerBack()=>Container(
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(topRight: Radius.circular(35),bottomRight:Radius.circular(35) ),
         gradient: LinearGradient(
           colors: [
             Color.fromRGBO(203,0,0,65),
