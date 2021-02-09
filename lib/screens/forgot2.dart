@@ -48,6 +48,7 @@ class Forgot2 extends StatelessWidget {
               width: 250,
               height: 36,
               child: TextField(
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -83,7 +84,9 @@ class Forgot2 extends StatelessWidget {
                 size: 35,
                 color: Colors.white,
               ),
-              onPressed: () {Navigator.of(context).pushNamed('/');},
+              onPressed: () {
+                Navigator.of(context).pushNamed('/');
+              },
             ),
             Divider(
               height: 45,
@@ -119,4 +122,3 @@ class Forgot2 extends StatelessWidget {
     );
   }
 }
-
