@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morango_app/screens/addrecipe_screen.dart';
 import 'package:morango_app/screens/recipe_screen.dart';
 import 'package:morango_app/screens/Mix_Screen.dart';
 import 'package:morango_app/screens/forgot.dart';
@@ -46,6 +47,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => Loading());
             case '/recipe':
               return MaterialPageRoute(builder: (_) => RecipeScreen());
+            case '/addrecipe':
+              return MaterialPageRoute(builder: (_) => AddRecipeScreen());
             case '/':
             default:
               return MaterialPageRoute(builder: (_) => SigninScreen());

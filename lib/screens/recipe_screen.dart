@@ -20,6 +20,7 @@ class RecipeScreen extends StatelessWidget {
             color: Colors.white
         ),
       ),
+      centerTitle: true,
       leading: Builder(
           builder: (context){
             return IconButton(
