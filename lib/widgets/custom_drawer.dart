@@ -7,11 +7,14 @@ import 'package:morango_app/tiles/drawer_tile.dart';
 
 
 class CustomDrawer extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
     Widget _buildDrawerBack()=>Container(
-      decoration: BoxDecoration(
+      decoration:
+      BoxDecoration(
+        boxShadow: [BoxShadow(color:  Color.fromRGBO(125,0,0,5))],
         borderRadius: BorderRadius.only(topRight: Radius.circular(35),bottomRight:Radius.circular(35) ),
         gradient: LinearGradient(
           colors: [
@@ -43,7 +46,7 @@ class CustomDrawer extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsetsDirectional.only(bottom: 8.0),
-              padding: EdgeInsets.fromLTRB(20.0, 16.0, 16.0, 8.0),
+              padding: EdgeInsets.fromLTRB(22.0, 16.0, 16.0, 8.0),
               child:
               Text("Olá,",style: TextStyle(
                 color: Colors.white, fontSize: 18.0,fontWeight: FontWeight.bold,
@@ -62,7 +65,7 @@ class CustomDrawer extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.fromLTRB(0.0, 5.0, 10.0, 8.0),
                   child: Text("Fulano de tal", style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20
+                      color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20
                   ),),
                 ),
               ],
@@ -70,19 +73,19 @@ class CustomDrawer extends StatelessWidget {
             Divider(),
             Container(
               padding: EdgeInsets.only(left: 22.0),
-              child: DrawerTile(Icons.add_rounded,"Adicionar Receita"),
+              child: DrawerTile(Icons.add_rounded,"Adicionar Receita",'/adicionar'),
             ),//ADICIONAR RECEITA
             Container(
               padding: EdgeInsets.only(left: 22.0),
-              child:   DrawerTile(Icons.person_outline,"Meu perfil"),
+              child:   DrawerTile(Icons.person_outline,"Meu perfil",'/perfil'),
             ),//MEU PERFIL
             Container(
               padding: EdgeInsets.only(left: 22.0),
-              child: DrawerTile(Icons.help_outlined,"Tutorial"),
+              child: DrawerTile(Icons.help_outlined,"Tutorial",'/tutorial'),
             ),//TUTORIAL
             Container(
               padding: EdgeInsets.only(left: 22.0),
-              child:  DrawerTile(Icons.exit_to_app,"Sair"),
+              child:  DrawerTile(Icons.exit_to_app,"Sair",'/signin'),
             ),//SAIR
             Row(
               children: <Widget>[
@@ -106,7 +109,7 @@ class CustomDrawer extends StatelessWidget {
                 ),),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(5.0,5.0,5.0,0.0),
+              padding: EdgeInsets.symmetric(horizontal: 20,vertical: 0),
               child: Image.asset("images/morangoG.drawer.png"),
             ),
           ],
