@@ -132,7 +132,7 @@ class MixScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
                 child:
                 RaisedButton(
-                  onPressed: () {Navigator.of(context).pushNamed('/recipe');},
+                  onPressed: () {Navigator.of(context).pushNamed('/addrecipe');},
                   color: Color.fromRGBO(110, 213, 161, 1),
                   child:
                   Row(
