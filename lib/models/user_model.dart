@@ -16,7 +16,7 @@ class UserModel extends Model{
 
   bool isLoading = false;
 
-  void signUp({@required Map<String,dynamic>userData,@required String pass,@required VoidCallback onSuccess,@required VoidCallback onFail }){
+  void signUp({@required Map<String,dynamic>userData,@required String pass }){
     isLoading = true;
     notifyListeners();
 
