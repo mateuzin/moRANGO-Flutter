@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "43274196987",
+    "project_id": "morango-b263d",
+    "storage_bucket": "morango-b263d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43274196987:android:e0cbfe50b216bfebffdd5e",
+        "android_client_info": {
+          "package_name": "xalodev.morango_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43274196987-0rdae37k0tuksc40tgk8srj0ugmkjfh1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xalodev.morango_app",
+            "certificate_hash": "609bb824f074cb68cda9f20ec56ccb741c751417"
+          }
+        },
+        {
+          "client_id": "43274196987-7dluk3o64k7g9ipumvd47q8cf2omv4ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-_gNJd5ONyQScfsO3CoRPpw4EnjIL3NE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43274196987-7dluk3o64k7g9ipumvd47q8cf2omv4ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

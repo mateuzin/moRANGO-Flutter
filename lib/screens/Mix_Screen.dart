@@ -6,6 +6,7 @@ import 'package:morango_app/mix_icons.dart';
 import 'package:morango_app/widgets/app_bar.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MixScreen extends StatelessWidget {
   @override
@@ -16,39 +17,47 @@ class MixScreen extends StatelessWidget {
         child: Appbar(),
         preferredSize: Size.fromHeight(50),
       ),
-        backgroundColor: Color.fromRGBO(255,166,166,1),
-        body:SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.fromLTRB(26, 31, 188, 6),
-                  child:
-                  Text("Vamos preparar?",style: TextStyle(
-                    color: Colors.white, fontSize: 23,fontWeight: FontWeight.bold,
-                  ),),//Texto "VAMOS PRERAR",
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(18, 6, 29, 14),
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Mix.batedeira,color: Colors.white,),
-                      filled: true,
-                      fillColor: Color.fromRGBO(110, 213, 161, 1),
-                      labelText: "Coloque os ingredientes que possui!",
-                      labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        borderSide: BorderSide(
-                          color:  Color.fromRGBO(110, 213, 161, 1),
-                        ),
+      backgroundColor: Color.fromRGBO(255,166,166,1),
+      body:SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                //padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
+                padding: EdgeInsets.fromLTRB(20, 20, 188, 0),
+                child:
+                Text("Vamos preparar?",style: TextStyle(
+                  color: Colors.white, fontSize: 23,fontWeight: FontWeight.bold,
+                ),),//Texto "VAMOS PRERAR",
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  cursorColor: Colors.white,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Mix.batedeira,color: Colors.white,),
+                    filled: true,
+                    fillColor: Color.fromRGBO(110, 213, 161, 1),
+                    hintText: "Coloque os ingredientes que possui!",
+                    hintStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: BorderSide(
+                        color:  Color.fromRGBO(110, 213, 161, 1),
                       ),
                     ),
+                    suffixIcon: IconButton(icon: Icon(MdiIcons.plus,color: Colors.white),
+                      onPressed: (){},
+                    ),
                   ),
-                ),//**pergunta de ingredientes
-                Container(
+                ),
+              ),//**pergunta de ingredientes
+
+
+              /*Container(
                   padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
                   child: Row(
                     children: [
@@ -115,32 +124,35 @@ class MixScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                ), //ingredientes 2
-                Container(
-                  padding: EdgeInsets.fromLTRB(25, 150, 29, 14),
-                  child:
-                  RaisedButton(
-                    onPressed: () {Navigator.of(context).pushNamed('/addrecipe');},
-                    color: Color.fromRGBO(110, 213, 161, 1),
-                      child:
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ), //ingredientes 2*/
 
-                        children: <Widget>[
-                          Icon(Mix.mix,size: 100,color: Colors.white,),
-                          Text("  Gerar \nReceitas",style: TextStyle(color: Colors.white,fontSize: 48),),
-                        ],
-                      ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        side: BorderSide(color: Color.fromRGBO(110,213,161,1),)
-                    ),
-                    ),
+
+              Container(
+                margin: EdgeInsets.fromLTRB(0,350,0,0),
+                padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
+                child:
+                RaisedButton(
+                  onPressed: () {Navigator.of(context).pushNamed('/addrecipe');},
+                  color: Color.fromRGBO(110, 213, 161, 1),
+                  child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    children: <Widget>[
+                      Icon(Mix.mix,size: 100,color: Colors.white,),
+                      Text("  Gerar \nReceitas",style: TextStyle(color: Colors.white,fontSize: 48),),
+                    ],
                   ),
-              ],
-            ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      side: BorderSide(color: Color.fromRGBO(110,213,161,1),)
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+      ),
       bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
