@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:morango_app/widgets/app_bar.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
+import 'package:morango_app/widgets/recipe_card.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -13,263 +14,30 @@ class HomeScreen extends StatelessWidget {
       drawer: CustomDrawer(),
       appBar: PreferredSize(
         child: Appbar(),
-        preferredSize: Size.fromHeight(50),),
-      backgroundColor: Color.fromRGBO(255,166,166,1),
+        preferredSize: Size.fromHeight(50),
+      ),
+      backgroundColor: Color.fromRGBO(255, 166, 166, 1),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(17, 40, 0, 25),
-              child: Text("Receitas da semana",
+              padding: EdgeInsets.fromLTRB(17, 20, 0, 25),
+              child: Text(
+                "Receitas da semana",
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 30,color: Color.fromARGB(222, 0, 0, 0)),
+                style: TextStyle(
+                    fontSize: 30, color: Color.fromARGB(222, 0, 0, 0)),
               ),
             ),
-            Row(
+            Wrap(
               children: [
-                SizedBox(
-                  height: 250,
-                  width: 200,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset("images/Bolo-de-Chocolate-Cremoso.jpg",
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            SizedBox(width: 9,),
-                            Expanded(child: Text('Bolo de chocolate cremoso',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Color.fromARGB(153, 0, 0, 0),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)
-                            )),
-                            SizedBox(width: 9,),
-
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("5.0 *",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(153, 241, 105, 105),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold
-                                  ),),
-                                Row(
-                                  children: [
-                                    Text("40~50",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(153, 241, 105, 105),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold)),
-                                    Icon(
-                                        Icons.av_timer,
-                                        color: Colors.red
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 250,
-                  width: 200,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset("images/Bolo-de-Chocolate-Cremoso.jpg",
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            SizedBox(width: 9,),
-                            Expanded(child: Text('Bolo de chocolate cremoso',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Color.fromARGB(153, 0, 0, 0),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)
-                            )),
-                            SizedBox(width: 9,),
-
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("5.0 *",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(153, 241, 105, 105),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold
-                                  ),),
-                                Row(
-                                  children: [
-                                    Text("40~50",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(153, 241, 105, 105),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold)),
-                                    Icon(
-                                        Icons.av_timer,
-                                        color: Colors.red
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
-
+                RecipeCard(),
+                RecipeCard(),
+                RecipeCard(),
+                RecipeCard(),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: Text("Destaques",
-                style: TextStyle(fontSize: 30,color: Color.fromARGB(222, 0, 0, 0)),
-              ),
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  height: 250,
-                  width: 200,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset("images/Bolo-de-Chocolate-Cremoso.jpg",
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            SizedBox(width: 9,),
-                            Expanded(child: Text('Bolo de chocolate cremoso',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Color.fromARGB(153, 0, 0, 0),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)
-                            )),
-                            SizedBox(width: 9,),
-
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("5.0 *",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(153, 241, 105, 105),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold
-                                  ),),
-                                Row(
-                                  children: [
-                                    Text("40~50",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(153, 241, 105, 105),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold)),
-                                    Icon(
-                                        Icons.av_timer,
-                                        color: Colors.red
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 250,
-                  width: 200,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset("images/Bolo-de-Chocolate-Cremoso.jpg",
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            SizedBox(width: 9,),
-                            Expanded(child: Text('Bolo de chocolate cremoso',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Color.fromARGB(153, 0, 0, 0),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)
-                            )),
-                            SizedBox(width: 9,),
-
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("5.0 *",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(153, 241, 105, 105),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold
-                                  ),),
-                                Row(
-                                  children: [
-                                    Text("40~50",
-                                        style: TextStyle(
-                                            color: Color.fromARGB(153, 241, 105, 105),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold)),
-                                    Icon(
-                                      Icons.av_timer,
-                                      color: Colors.red
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
-
-              ],
-            ),
-
-
           ],
         ),
       ),
@@ -277,4 +45,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
