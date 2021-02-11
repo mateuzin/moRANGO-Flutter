@@ -14,10 +14,7 @@ class CustomDrawer extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(35),
                 bottomRight: Radius.circular(35)),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+            color: Color.fromRGBO(203,0,0,65),
           ),
         );
 
@@ -82,7 +79,7 @@ class CustomDrawer extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 22.0),
                 child: DrawerTile(
-                    Icons.add_rounded, "Adicionar Receita", '/adicionar'),
+                    Icons.add_rounded, "Adicionar Receita", '/addrecipe'),
               ), //ADICIONAR RECEITA
               Container(
                 padding: EdgeInsets.only(left: 22.0),

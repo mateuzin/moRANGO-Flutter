@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:morango_app/Screens/recipe_screen.dart';
 import 'package:morango_app/models/user_model.dart';
 import 'package:morango_app/screens/Mix_Screen.dart';
+import 'package:morango_app/screens/addrecipe_screen.dart';
 import 'package:morango_app/screens/forgot.dart';
 import 'package:morango_app/screens/forgot2.dart';
 import 'package:morango_app/screens/home_screen.dart';
@@ -76,6 +77,10 @@ class MyApp extends StatelessWidget {
               case '/recipe':
                 return MaterialPageRoute(
                     builder: (_) => RecipeScreen()
+                );
+              case '/addrecipe':
+                return MaterialPageRoute(
+                    builder: (_) => AddRecipeScreen()
                 );
               case '/':
               default:

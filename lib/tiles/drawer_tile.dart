@@ -17,7 +17,7 @@ class DrawerTile extends StatelessWidget {
       child: InkWell(
         onTap: (){
           Navigator.of(context).pop();
-          Navigator.of(context).pushNamed(page);
+          Navigator.of(context).pushReplacementNamed(page);
         },
         child: Container(
           height: 60.0,

@@ -81,7 +81,7 @@ class _SigninScreenState extends State<SigninScreen> {
                               style: TextStyle(fontSize: 15.23),
                               keyboardType: TextInputType.emailAddress,
                               validator: (text){
-                                if(text.isEmpty|| !text.contains("@")) return "E-mail inválido!";},
+                                if(text.isEmpty /*|| !text.contains("@")*/) return "E-mail inválido!";},
                             ),
                           ),//email
 

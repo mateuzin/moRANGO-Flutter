@@ -22,7 +22,9 @@ class AddRecipeScreen extends StatelessWidget {
             return IconButton(
                 icon: Icon(Icons.arrow_back),
                 color: Colors.white,
-                onPressed: (){}
+                onPressed: (){
+                  Navigator.of(context).pushReplacementNamed("/home");
+                }
             );
           }
       ),
