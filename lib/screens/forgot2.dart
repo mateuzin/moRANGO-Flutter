@@ -4,6 +4,11 @@ class Forgot2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(255, 144, 144, 1),
+        title: Image.asset("images/morango.appbar.png", height: 35, width: 119),
+        centerTitle: true,
+      ),
       backgroundColor: Color.fromRGBO(255, 166, 166, 1),
       body: SingleChildScrollView(
         child: Column(

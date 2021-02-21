@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:morango_app/widgets/app_bar.dart';
 
 class Forgot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(255, 144, 144, 1),
+        title: Image.asset("images/morango.appbar.png", height: 35, width: 119),
+        centerTitle: true,
+      ),
       backgroundColor: Color.fromRGBO(255, 166, 166, 1),
       body: SingleChildScrollView(
         child: Column(
@@ -49,8 +55,8 @@ class Forgot extends StatelessWidget {
               color: Color.fromRGBO(255, 166, 166, 1),
             ),
             Container(
-              width: 300,
-              height: 50,
+              width: 310,
+              height: 60,
               child: TextFormField(
                 decoration: InputDecoration(
                   hintText: "Digite seu e-mail aqui!",
