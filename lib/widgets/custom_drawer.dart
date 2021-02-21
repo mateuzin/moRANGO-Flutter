@@ -88,7 +88,7 @@ class CustomDrawer extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(left: 22.0),
                     child: DrawerTile(
-                        Icons.person_outline, "Meu perfil", '/perfil'),
+                        Icons.person_outline, "Meu perfil", '/recipe'),
                   ), //MEU PERFIL
                   Container(
                     padding: EdgeInsets.only(left: 22.0),

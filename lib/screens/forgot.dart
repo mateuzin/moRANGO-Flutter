@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:morango_app/widgets/app_bar.dart';
 
-class Forgot extends StatelessWidget {
+import 'package:morango_app/models/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class Forgot extends StatefulWidget {
+  @override
+  _ForgotState createState() => _ForgotState();
+}
+
+class _ForgotState extends State<Forgot> {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  final _emailController = TextEditingController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void recuperarSenha() {
+    _auth.sendPasswordResetEmail(email: _emailController.text);
+    _onSuccess();
+  }
+
+  void _onSuccess() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Enviamos um email para recuperação de senha!"),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(255, 144, 144, 1),
         title: Image.asset("images/morango.appbar.png", height: 35, width: 119),
@@ -58,6 +83,8 @@ class Forgot extends StatelessWidget {
               width: 310,
               height: 60,
               child: TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: "Digite seu e-mail aqui!",
                   enabledBorder: OutlineInputBorder(
@@ -101,6 +128,7 @@ class Forgot extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
+                  recuperarSenha();
                   Navigator.of(context).pushNamed('/forgot2');
                 },
               ),

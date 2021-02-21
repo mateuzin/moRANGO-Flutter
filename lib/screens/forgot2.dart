@@ -76,37 +76,6 @@ class Forgot2 extends StatelessWidget {
                 },
               ),
             ),
-            Divider(
-              height: 45,
-              color: Color.fromRGBO(255, 166, 166, 1),
-            ),
-            Text(
-              'O EMAIL NÃO CHEGOU? \nVERIFIQUE O SPAM E A LIXEIRA, \nSE NECESSITAR DE REENVIO,\nAPERTE O BOTÃO ABAIXO',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Divider(
-              height: 20,
-              color: Color.fromRGBO(255, 166, 166, 1),
-            ),
-            Container(
-              width: 250,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(110, 213, 161, 1),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(50),
-                ),
-              ),
-              child: FlatButton(
-                onPressed: () {},
-                child: Text(
-                  'REENVIO',
-                  textScaleFactor: 1.5,
-                ),
-              ),
-            ),
           ],
         ),
       ),
