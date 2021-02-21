@@ -5,13 +5,11 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:morango_app/mix_icons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:morango_app/models/user_model.dart';
-import 'package:morango_app/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'home_screen.dart';
 import 'package:sign_button/sign_button.dart';
@@ -24,6 +22,10 @@ class SigninScreen extends StatefulWidget {
 class _SigninScreenState extends State<SigninScreen> {
 
   bool _obscureText = true;
+  final _passController = TextEditingController();
+  final _emailController = TextEditingController();
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
   void _trocar() {//ver a senha
@@ -35,6 +37,7 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 144, 144, 1),
           title:
@@ -69,6 +72,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           Container(//email e nome
                             padding: EdgeInsets.fromLTRB(20, 25, 20, 7),
                             child: TextFormField(
+                              controller: _emailController,
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Color.fromRGBO(110, 213, 161, 1),
@@ -88,6 +92,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           Container(//senha
                             padding: EdgeInsets.fromLTRB(20, 14, 20, 8),
                             child: TextFormField(
+                              controller: _passController,
                               obscureText: _obscureText,
                               decoration: InputDecoration(
                                 filled: true,
@@ -103,7 +108,7 @@ class _SigninScreenState extends State<SigninScreen> {
                               ),
                               style: TextStyle(fontSize: 15.23),
                               validator: (text){
-                                if(text.isEmpty|| text.length < 6 ) return "Senha tem que conter no minimo 6 caracteres!";},
+                                if(text.isEmpty|| text.length < 6 ) return "Senha Incorreta!";},
                             ),
                           ), //senha
 
@@ -116,7 +121,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             ),),
                           ), //esqueceu a senha
 
-                          Container(//botão de manter conectado
+                          /*Container(//botão de manter conectado
                             padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
                             child: Row(
                               children: <Widget>[
@@ -125,7 +130,8 @@ class _SigninScreenState extends State<SigninScreen> {
                                     ,style: TextStyle(fontSize: 17.23,color: Colors.white)),
                               ],
                             ),
-                          ),//botão de manter conectado
+                          ),//botão de manter conectado*/
+
 
                           Container( //botão de entrar
                             child:
@@ -133,11 +139,13 @@ class _SigninScreenState extends State<SigninScreen> {
                               color: Color.fromRGBO(0,194,122,1),
                               child: Text("ENTRAR",style: TextStyle(color: Colors.white),),
                               onPressed: (){if(_formKey.currentState.validate()){
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(builder: (context)=>HomeScreen())
-                                );}
-
-                              model.signIn();
+                                model.signIn(
+                                  email: _emailController.text,
+                                  pass: _passController.text,
+                                  onSuccess: _onSuccess,
+                                  onFail: _onFail,
+                                );
+                              }
                               },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
@@ -172,7 +180,12 @@ class _SigninScreenState extends State<SigninScreen> {
                                     buttonType: ButtonType.google,
                                     buttonSize: ButtonSize.medium//, large
                                     ,onPressed: () {
-                                      model.signInWithGoogle();
+                                      model.signInWithGoogle(
+                                        onSuccess: _onSuccess,
+                                        onFail: _onFail,
+                                      );
+
+                                      ;
                                     }),
                                 Divider(color: Colors.transparent,),
                                 SignInButton(
@@ -186,7 +199,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),//icones facebook e google
 
                           Container(//botão de cadastro
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 70),
+                            padding: EdgeInsets.fromLTRB(20, 20, 20, 140),
                             child:
                             SizedBox(
                               width: 250.0,
@@ -213,5 +226,18 @@ class _SigninScreenState extends State<SigninScreen> {
         )
     );
   }
-
+  void _onSuccess(){
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context)=>HomeScreen())
+      );
+  }
+  void _onFail(){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text("Falha ao Entrar!"),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),)
+    );
+  }
 }
+
+

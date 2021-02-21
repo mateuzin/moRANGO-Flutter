@@ -9,13 +9,24 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class UserModel extends Model {
   FirebaseAuth _auth = FirebaseAuth.instance;
+
   final GoogleSignIn googleSignIn = GoogleSignIn();
+
   User user;
+
   Map<String, dynamic> userData = Map();
 
-  String email;
+  //String email;
 
   bool isLoading = false;
+
+
+  @override
+  void addListener(VoidCallback listener) {
+    super.addListener(listener);
+
+    _loadCurrentUser();
+  }
 
   void signUp(
       {@required Map<String, dynamic> userData,
@@ -43,30 +54,70 @@ class UserModel extends Model {
     });
   }
 
-  void signIn() async {
+  void signIn({@required email,@required String pass,@required VoidCallback onSuccess,@required VoidCallback onFail}) async {
     isLoading = true;
     notifyListeners();
+    
+    _auth.signInWithEmailAndPassword(email: email, password: pass)
+        .then((userCredential) async {
+      user = userCredential.user;
 
-    await Future.delayed(Duration(seconds: 1));
+      await _loadCurrentUser();
+      await _saveUserData(userData);
 
-    isLoading = false;
-    notifyListeners();
+      onSuccess();
+      isLoading = false;
+      notifyListeners();
+    }).catchError((e) {
+      onFail();
+      isLoading = false;
+      notifyListeners();
+    });
   }
 
-  void recoverPass() {}
+  bool isLoggedIn() {
+    return user != null;
+  }
 
-  void signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+  void signOut() async{
+    await _auth.signOut();
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-        idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+    userData = Map();
+    user = null;
+  }
 
-    final UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+  void recoverPass(String email) {
+    _auth.sendPasswordResetEmail(email: email);
+  }
 
-    final User user = userCredential.user;
+
+
+  void signInWithGoogle({@required VoidCallback onSuccess,@required VoidCallback onFail}) async {
+    try {
+      final GoogleSignInAccount googleUser = await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+
+      final UserCredential userCredential =
+      await _auth.signInWithCredential(credential);
+
+      user = userCredential.user;
+
+      await _loadCurrentUser();
+      await updateUserData(user);
+      onSuccess();
+      isLoading = false;
+      notifyListeners();
+
+    }on FirebaseAuthException catch (e){
+      onFail();
+      isLoading = false;
+      notifyListeners();
+    }
+
   }
 
   Future<UserCredential> signInWithFacebook() async {
@@ -87,9 +138,17 @@ class UserModel extends Model {
     return null;
   }
 
-  bool isLoggedIn() {
-    return user != null;
+  void updateUserData(User user)async{
+    DocumentReference ref = FirebaseFirestore.instance.collection("users").doc(user.uid);
+
+    return ref.set({
+      "e-mail": user.email,
+      "photoURL": user.photoURL,
+      "name": user.displayName,
+    }
+    );
   }
+
 
   Future<User> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
@@ -98,4 +157,20 @@ class UserModel extends Model {
         .doc(user.uid)
         .set(userData);
   }
+
+  Future<Null> _loadCurrentUser() async{
+    if(user == null)
+      user = await _auth.currentUser;
+    if(user != null){
+      if(userData["naame"]== null){
+        DocumentSnapshot docUser = await FirebaseFirestore.instance
+            .collection("users")
+            .doc(user.uid)
+            .get();
+        userData = docUser.data();
+      }
+    }
+    notifyListeners();
+  }
+
 }

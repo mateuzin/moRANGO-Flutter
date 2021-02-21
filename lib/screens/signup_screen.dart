@@ -18,17 +18,26 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  bool _obscureText = true;
+
   final _nameController = TextEditingController();
   final _passController = TextEditingController();
   final _emailController = TextEditingController();
-  final _sexController = TextEditingController();
-  final _nascController = TextEditingController();
+  final _passConfirmController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _trocar() {//ver a senha
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 144, 144, 1),
           title: Image.asset("images/morango.appbar.png",
@@ -62,6 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             "images/morango.Singin.png",
                           ),
                         ), //imagem do morango
+                        Divider(color: Colors.transparent,),
                         Container(
                           child: Text(
                             'Registro:',
@@ -116,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             style: TextStyle(fontSize: 15.23),
                             keyboardType: TextInputType.name,
                             validator: (text) {
-                              if (text.isEmpty) return "Nome!";
+                              if (text.isEmpty) return "Nome inválido!";
                             },
                           ),
                         ), //nome
@@ -125,6 +135,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           // senha
                           padding: EdgeInsets.fromLTRB(20, 16, 80, 7),
                           child: TextFormField(
+                            obscureText: _obscureText,
                             controller: _passController,
                             decoration: InputDecoration(
                               filled: true,
@@ -132,8 +143,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               hintText: "Senha",
                               hintStyle: TextStyle(
                                   color: Color.fromRGBO(80, 73, 73, 1)),
-                              suffixIcon: Icon(Icons.star,
-                                  size: 9, color: Color.fromRGBO(0, 0, 0, 6)),
+                              suffixIcon: IconButton(icon: Icon(Icons.visibility,color: Color.fromRGBO(80, 73, 73, 1)),
+                                  onPressed: _trocar
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
@@ -150,83 +162,32 @@ class _SignupScreenState extends State<SignupScreen> {
                           // comfirmar senha
                           padding: EdgeInsets.fromLTRB(20, 16, 80, 7),
                           child: TextFormField(
+                            obscureText: _obscureText,
+                            controller: _passConfirmController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "Confirmar senha",
                               hintStyle: TextStyle(
                                   color: Color.fromRGBO(80, 73, 73, 1)),
-                              suffixIcon: Icon(Icons.star,
-                                  size: 9, color: Color.fromRGBO(0, 0, 0, 6)),
+                              suffixIcon: IconButton(icon: Icon(Icons.visibility,color: Color.fromRGBO(80, 73, 73, 1)),
+                                  onPressed: _trocar
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                             ),
                             style: TextStyle(fontSize: 15.23),
+                            validator: (text) {
+                              if (_passConfirmController.text!=_passController.text)
+                                return "Senhas diferentes!";
+                            },
                           ),
                         ), // confirmar senha
 
                         Container(
-                          // sexo
-                          padding: EdgeInsets.fromLTRB(20, 16, 160, 7),
-                          child: TextFormField(
-                            controller: _sexController,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color.fromRGBO(110, 213, 161, 1),
-                              hintText: "Sexo",
-                              hintStyle: TextStyle(
-                                  color: Color.fromRGBO(80, 73, 73, 1)),
-                              suffixIcon: Icon(Icons.keyboard_arrow_down_sharp,
-                                  size: 30,
-                                  color: Color.fromRGBO(108, 97, 97, 1)),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            style: TextStyle(fontSize: 15.23),
-                          ),
-                        ), // sexo
-
-                        Container(
-                          // nascimento
-                          padding: EdgeInsets.fromLTRB(20, 16, 160, 7),
-                          child: TextFormField(
-                            controller: _nascController,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color.fromRGBO(110, 213, 161, 1),
-                              hintText: "dd/mm/aaaa",
-                              hintStyle: TextStyle(
-                                  color: Color.fromRGBO(80, 73, 73, 1)),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
-                            style: TextStyle(fontSize: 15.23),
-                            keyboardType: TextInputType.datetime,
-                          ),
-                        ), // dd/mm/aaaa
-
-                        Container(
-                          //botão de aceitar termos
-                          padding: EdgeInsets.fromLTRB(38, 10, 20, 8),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.check_box_outline_blank_rounded,
-                                size: 23.30,
-                                color: Colors.white,
-                              ),
-                              Text(" Aceito os termos de serviço",
-                                  style: TextStyle(
-                                      fontSize: 17.23, color: Colors.black)),
-                            ],
-                          ),
-                        ), // botão de aceitar termos
-                        Container(
                           // Criar conta
-                          padding: EdgeInsets.fromLTRB(20, 30, 20, 25),
+                          padding: EdgeInsets.fromLTRB(20, 30, 20, 165),
                           child: RaisedButton(
                             color: Color.fromRGBO(0, 194, 122, 1),
                             child: Text(
@@ -235,20 +196,21 @@ class _SignupScreenState extends State<SignupScreen> {
                                   color: Colors.white, fontSize: 20.0),
                             ),
                             onPressed: () {
+                              {if(_formKey.currentState.validate()){
                               Map<String, dynamic> userData = {
-                                "name": _nameController.text,
-                                "e-mail": _emailController.text,
-                                "sexo": _sexController.text,
-                                //  "nasc": _nameController.text,
+                              "name": _nameController.text,
+                              "e-mail": _emailController.text,
                               };
 
                               model.signUp(
-                                userData: userData,
-                                email: _emailController.text,
-                                pass: _passController.text,
-                                onSuccess: _onSuccess,
-                                onFail: _onFail,
+                              userData: userData,
+                              email: _emailController.text,
+                              pass: _passController.text,
+                              onSuccess: _onSuccess,
+                              onFail: _onFail,
                               );
+                              }
+                              }
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
@@ -267,10 +229,23 @@ class _SignupScreenState extends State<SignupScreen> {
         ));
   }
 
-  void _onSuccess() {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
+  void _onSuccess(){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text("Usuário criado com sucesso!"),
+          backgroundColor: Color.fromRGBO(0, 194, 122, 1),
+          duration: Duration(seconds: 2),)
+    );
+    Future.delayed(Duration(seconds: 2)).then((_){
+      Navigator.of(context).pop();
+    });
+    /*Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context)=>SigninScreen()));*/
   }
-
-  void _onFail() {}
+  void _onFail(){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text("Falha ao criar Usuário!"),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),)
+    );
+  }
 }

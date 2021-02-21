@@ -34,7 +34,7 @@ class Forgot extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'ENSIRA O SEU EMAIL NO CAMPO ABAIXO',
+                      'INSIRA O SEU EMAIL NO CAMPO ABAIXO',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
