@@ -5,7 +5,7 @@ class RecipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 250,
-      width: 200,
+      width: 190,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Column(

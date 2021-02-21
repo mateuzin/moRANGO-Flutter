@@ -18,7 +18,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-
   final _nameController = TextEditingController();
   final _passController = TextEditingController();
   final _emailController = TextEditingController();
@@ -37,11 +36,12 @@ class _SignupScreenState extends State<SignupScreen> {
           centerTitle: true,
         ),
         backgroundColor: Colors.white,
-
         body: ScopedModelDescendant<UserModel>(
-          builder: (context,child,model){
-            if(model.isLoading)
-              return Center(child: CircularProgressIndicator(),);
+          builder: (context, child, model) {
+            if (model.isLoading)
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             return Form(
               key: _formKey,
               child: ListView(
@@ -79,7 +79,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "E-mail",
-                              hintStyle: TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromRGBO(80, 73, 73, 1)),
                               suffixIcon: Icon(Icons.star,
                                   size: 9, color: Color.fromRGBO(0, 0, 0, 6)),
                               border: OutlineInputBorder(
@@ -88,8 +89,10 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             style: TextStyle(fontSize: 15.23),
                             keyboardType: TextInputType.emailAddress,
-                            validator: (text){
-                              if(text.isEmpty|| !text.contains("@")) return "E-mail inválido!";},
+                            validator: (text) {
+                              if (text.isEmpty || !text.contains("@"))
+                                return "E-mail inválido!";
+                            },
                           ),
                         ),
 
@@ -102,8 +105,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "Nome Completo",
-                              hintStyle:
-                              TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromRGBO(80, 73, 73, 1)),
                               suffixIcon: Icon(Icons.star,
                                   size: 9, color: Color.fromRGBO(0, 0, 0, 6)),
                               border: OutlineInputBorder(
@@ -112,10 +115,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             style: TextStyle(fontSize: 15.23),
                             keyboardType: TextInputType.name,
-                            validator: (text){
-                              if(text.isEmpty) return "Nome!";},
+                            validator: (text) {
+                              if (text.isEmpty) return "Nome!";
+                            },
                           ),
-                        ),//nome
+                        ), //nome
 
                         Container(
                           // senha
@@ -126,8 +130,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "Senha",
-                              hintStyle:
-                              TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromRGBO(80, 73, 73, 1)),
                               suffixIcon: Icon(Icons.star,
                                   size: 9, color: Color.fromRGBO(0, 0, 0, 6)),
                               border: OutlineInputBorder(
@@ -135,8 +139,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             ),
                             style: TextStyle(fontSize: 15.23),
-                            validator: (text){
-                              if(text.isEmpty|| text.length < 6 ) return "Senha tem que conter no minimo 6 caracteres";},
+                            validator: (text) {
+                              if (text.isEmpty || text.length < 6)
+                                return "Senha tem que conter no minimo 6 caracteres";
+                            },
                           ),
                         ), // senha
 
@@ -148,8 +154,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "Confirmar senha",
-                              hintStyle:
-                              TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromRGBO(80, 73, 73, 1)),
                               suffixIcon: Icon(Icons.star,
                                   size: 9, color: Color.fromRGBO(0, 0, 0, 6)),
                               border: OutlineInputBorder(
@@ -169,10 +175,11 @@ class _SignupScreenState extends State<SignupScreen> {
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "Sexo",
-                              hintStyle:
-                              TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromRGBO(80, 73, 73, 1)),
                               suffixIcon: Icon(Icons.keyboard_arrow_down_sharp,
-                                  size: 30, color: Color.fromRGBO(108, 97, 97, 1)),
+                                  size: 30,
+                                  color: Color.fromRGBO(108, 97, 97, 1)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
@@ -190,8 +197,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               filled: true,
                               fillColor: Color.fromRGBO(110, 213, 161, 1),
                               hintText: "dd/mm/aaaa",
-                              hintStyle:
-                              TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromRGBO(80, 73, 73, 1)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
@@ -212,8 +219,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 color: Colors.white,
                               ),
                               Text(" Aceito os termos de serviço",
-                                  style:
-                                  TextStyle(fontSize: 17.23, color: Colors.black)),
+                                  style: TextStyle(
+                                      fontSize: 17.23, color: Colors.black)),
                             ],
                           ),
                         ), // botão de aceitar termos
@@ -224,19 +231,20 @@ class _SignupScreenState extends State<SignupScreen> {
                             color: Color.fromRGBO(0, 194, 122, 1),
                             child: Text(
                               "Criar Conta",
-                              style: TextStyle(color: Colors.white,fontSize: 20.0),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
                             ),
                             onPressed: () {
-
-                              Map<String,dynamic> userData = {
+                              Map<String, dynamic> userData = {
                                 "name": _nameController.text,
-                                "e-mail":_emailController.text,
+                                "e-mail": _emailController.text,
                                 "sexo": _sexController.text,
-                              //  "nasc": _nameController.text,
+                                //  "nasc": _nameController.text,
                               };
 
                               model.signUp(
                                 userData: userData,
+                                email: _emailController.text,
                                 pass: _passController.text,
                                 onSuccess: _onSuccess,
                                 onFail: _onFail,
@@ -256,16 +264,13 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             );
           },
-        )
-    );
+        ));
   }
 
-  void _onSuccess(){
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context)=>HomeScreen()));
-  }
-  void _onFail(){
-
+  void _onSuccess() {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
+  void _onFail() {}
 }

@@ -7,23 +7,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-class UserModel extends Model{
-
+class UserModel extends Model {
   FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   User user;
-  Map<String,dynamic> userData = Map();
+  Map<String, dynamic> userData = Map();
+
+  String email;
 
   bool isLoading = false;
 
-  void signUp({@required Map<String,dynamic>userData,@required String pass,@required VoidCallback onSuccess,@required VoidCallback onFail }){
+  void signUp(
+      {@required Map<String, dynamic> userData,
+      String email,
+      @required String pass,
+      @required VoidCallback onSuccess,
+      @required VoidCallback onFail}) {
     isLoading = true;
     notifyListeners();
 
-    _auth.createUserWithEmailAndPassword(
-        email: userData["email"],
-        password: pass
-    ).then((userCredential)async{
+    _auth
+        .createUserWithEmailAndPassword(email: email, password: pass)
+        .then((userCredential) async {
       user = userCredential.user;
 
       await _saveUserData(userData);
@@ -31,14 +36,14 @@ class UserModel extends Model{
       onSuccess();
       isLoading = false;
       notifyListeners();
-    }).catchError((e){
+    }).catchError((e) {
       onFail();
       isLoading = false;
       notifyListeners();
     });
   }
 
-  void signIn() async{
+  void signIn() async {
     isLoading = true;
     notifyListeners();
 
@@ -46,22 +51,20 @@ class UserModel extends Model{
 
     isLoading = false;
     notifyListeners();
-
   }
 
-  void recoverPass(){
-
-  }
+  void recoverPass() {}
 
   void signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
-    await googleUser.authentication;
+        await googleUser.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
 
-    final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    final UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
 
     final User user = userCredential.user;
   }
@@ -84,16 +87,15 @@ class UserModel extends Model{
     return null;
   }
 
-  bool isLoggedIn(){
+  bool isLoggedIn() {
     return user != null;
   }
 
-
-
-
-  Future<User> _saveUserData(Map<String,dynamic> userData)async{
+  Future<User> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
-    await FirebaseFirestore.instance.collection("users").doc(user.uid).set(userData);
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .set(userData);
   }
-
 }
