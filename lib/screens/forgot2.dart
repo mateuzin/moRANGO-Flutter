@@ -22,6 +22,10 @@ class Forgot2 extends StatelessWidget {
                         alignment: Alignment.center,
                       ),
                     ),
+                    Divider(
+                      height: 55,
+                      color: Color.fromRGBO(255, 166, 166, 1),
+                    ),
                     Text(
                       'UM E-MAIL FOI ENVIADO PARA VOCÊ',
                       textAlign: TextAlign.center,
@@ -30,7 +34,14 @@ class Forgot2 extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'ENSIRA O CÓDIGO NO ESPAÇO ABAIXO',
+                      'COM AS INSTRUÇÕES NECESSÁRIAS',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'PARA A REDEFINIÇÃO DA SUA SENHA',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -40,53 +51,25 @@ class Forgot2 extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(
-              height: 55,
-              color: Color.fromRGBO(255, 166, 166, 1),
-            ),
-            Container(
-              width: 250,
-              height: 36,
-              child: TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(50),
-                    ),
-                    borderSide: BorderSide(
-                      color: Color.fromRGBO(110, 213, 161, 1),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
-                      ),
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(110, 213, 161, 1),
-                      )),
-                  filled: true,
-                  fillColor: Color.fromRGBO(110, 213, 161, 1),
+            Divider(height: 55, color: Color.fromRGBO(255, 166, 166, 1)),
+            Ink(
+              decoration: ShapeDecoration(
+                color: Colors.red[300],
+                shape: CircleBorder(),
+              ),
+              child: IconButton(
+                hoverColor: Colors.blue,
+                iconSize: 35,
+                icon: Icon(
+                  Icons.arrow_back,
+                  textDirection: TextDirection.rtl,
+                  size: 35,
+                  color: Colors.white,
                 ),
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/');
+                },
               ),
-            ),
-            Divider(
-              height: 75,
-              color: Color.fromRGBO(255, 166, 166, 1),
-            ),
-            IconButton(
-              iconSize: 35,
-              icon: Icon(
-                Icons.arrow_back,
-                textDirection: TextDirection.rtl,
-                size: 35,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/');
-              },
             ),
             Divider(
               height: 45,
@@ -99,12 +82,12 @@ class Forgot2 extends StatelessWidget {
               ),
             ),
             Divider(
-              height: 5,
+              height: 20,
               color: Color.fromRGBO(255, 166, 166, 1),
             ),
             Container(
-              width: 100,
-              height: 36,
+              width: 250,
+              height: 40,
               decoration: BoxDecoration(
                 color: Color.fromRGBO(110, 213, 161, 1),
                 borderRadius: BorderRadius.all(
@@ -113,7 +96,10 @@ class Forgot2 extends StatelessWidget {
               ),
               child: FlatButton(
                 onPressed: () {},
-                child: Text('REENVIO'),
+                child: Text(
+                  'REENVIO',
+                  textScaleFactor: 1.5,
+                ),
               ),
             ),
           ],

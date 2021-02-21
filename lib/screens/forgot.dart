@@ -49,10 +49,11 @@ class Forgot extends StatelessWidget {
               color: Color.fromRGBO(255, 166, 166, 1),
             ),
             Container(
-              width: 250,
-              height: 36,
-              child: TextField(
+              width: 300,
+              height: 50,
+              child: TextFormField(
                 decoration: InputDecoration(
+                  hintText: "Digite seu e-mail aqui!",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(50),
@@ -79,18 +80,24 @@ class Forgot extends StatelessWidget {
               height: 75,
               color: Color.fromRGBO(255, 166, 166, 1),
             ),
-            IconButton(
-              hoverColor: Colors.blue,
-              iconSize: 35,
-              icon: Icon(
-                Icons.arrow_back,
-                textDirection: TextDirection.rtl,
-                size: 35,
-                color: Colors.white,
+            Ink(
+              decoration: ShapeDecoration(
+                color: Colors.red[300],
+                shape: CircleBorder(),
               ),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/forgot2');
-              },
+              child: IconButton(
+                hoverColor: Colors.blue,
+                iconSize: 35,
+                icon: Icon(
+                  Icons.arrow_back,
+                  textDirection: TextDirection.rtl,
+                  size: 35,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/forgot2');
+                },
+              ),
             ),
             Divider(
               height: 45,

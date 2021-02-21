@@ -17,8 +17,8 @@ class MixScreen extends StatelessWidget {
         child: Appbar(),
         preferredSize: Size.fromHeight(50),
       ),
-      backgroundColor: Color.fromRGBO(255,166,166,1),
-      body:SingleChildScrollView(
+      backgroundColor: Color.fromRGBO(255, 166, 166, 1),
+      body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: <Widget>[
@@ -26,36 +26,42 @@ class MixScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 10),
                 //padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
                 padding: EdgeInsets.fromLTRB(20, 20, 188, 0),
-                child:
-                Text("Vamos preparar?",style: TextStyle(
-                  color: Colors.white, fontSize: 23,fontWeight: FontWeight.bold,
-                ),),//Texto "VAMOS PRERAR",
+                child: Text(
+                  "Vamos preparar?",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ), //Texto "VAMOS PRERAR",
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
-                padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 child: TextField(
                   style: TextStyle(color: Colors.white),
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Mix.batedeira,color: Colors.white,),
+                    prefixIcon: Icon(
+                      Mix.batedeira,
+                      color: Colors.white,
+                    ),
                     filled: true,
                     fillColor: Color.fromRGBO(110, 213, 161, 1),
                     hintText: "Coloque os ingredientes que possui!",
-                    hintStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,),
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
                       borderSide: BorderSide(
-                        color:  Color.fromRGBO(110, 213, 161, 1),
+                        color: Color.fromRGBO(110, 213, 161, 1),
                       ),
-                    ),
-                    suffixIcon: IconButton(icon: Icon(MdiIcons.plus,color: Colors.white),
-                      onPressed: (){},
                     ),
                   ),
                 ),
-              ),//**pergunta de ingredientes
-
+              ), //**pergunta de ingredientes
 
               /*Container(
                   padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
@@ -126,27 +132,33 @@ class MixScreen extends StatelessWidget {
                   ),
                 ), //ingredientes 2*/
 
-
               Container(
-                margin: EdgeInsets.fromLTRB(0,350,0,0),
-                padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
-                child:
-                RaisedButton(
-                  onPressed: () {Navigator.of(context).pushNamed('/addrecipe');},
+                margin: EdgeInsets.fromLTRB(0, 250, 0, 0),
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/recipes');
+                  },
                   color: Color.fromRGBO(110, 213, 161, 1),
-                  child:
-                  Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                     children: <Widget>[
-                      Icon(Mix.mix,size: 100,color: Colors.white,),
-                      Text("  Gerar \nReceitas",style: TextStyle(color: Colors.white,fontSize: 48),),
+                      Icon(
+                        Mix.mix,
+                        size: 100,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "  Gerar \nReceitas",
+                        style: TextStyle(color: Colors.white, fontSize: 48),
+                      ),
                     ],
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      side: BorderSide(color: Color.fromRGBO(110,213,161,1),)
-                  ),
+                      side: BorderSide(
+                        color: Color.fromRGBO(110, 213, 161, 1),
+                      )),
                 ),
               ),
             ],
@@ -157,4 +169,3 @@ class MixScreen extends StatelessWidget {
     );
   }
 }
-
