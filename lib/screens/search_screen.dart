@@ -10,8 +10,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,91 +137,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 },
               ),
             ),*/
+
             Container(
-              padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 6),
-                    width: 114,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(110, 213, 161, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      "Ingrendiente1",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    child: Text("  "),
-                  ), //só um espacin
-                  Container(
-                    padding: EdgeInsets.only(top: 6),
-                    width: 114,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(110, 213, 161, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      "Ingrendiente2",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 6),
-                    width: 114,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(110, 213, 161, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      "Ingrendiente3",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    child: Text("  "),
-                  ), //só um espacin
-                  Container(
-                    padding: EdgeInsets.only(top: 6),
-                    width: 114,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(110, 213, 161, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    child: Text(
-                      "Ingrendiente4",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container( // pesquisar
+              // pesquisar
               padding: EdgeInsets.fromLTRB(20, 60, 20, 7),
               child: RaisedButton.icon(
                 icon: Icon(
@@ -236,7 +152,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   style: TextStyle(fontSize: 17.23, color: Colors.white),
                 ),
                 color: Color.fromRGBO(110, 213, 161, 1),
-                onPressed: () {Navigator.of(context).pushNamed('/recipes');},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/recipes');
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     side: BorderSide(

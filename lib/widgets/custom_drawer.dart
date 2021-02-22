@@ -11,21 +11,21 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _buildDrawerBack() => Container(
-      decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Color.fromRGBO(125, 0, 0, 5))],
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(35),
-            bottomRight: Radius.circular(35)),
-        color: Color.fromRGBO(203,0,0,65),
-      ),
-    );
+          decoration: BoxDecoration(
+            boxShadow: [BoxShadow(color: Color.fromRGBO(125, 0, 0, 5))],
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(35),
+                bottomRight: Radius.circular(35)),
+            color: Color.fromRGBO(203, 0, 0, 65),
+          ),
+        );
 
     return Drawer(
       child: Stack(
         children: <Widget>[
           _buildDrawerBack(),
           ScopedModelDescendant<UserModel>(
-            builder: (context, child, model){
+            builder: (context, child, model) {
               return ListView(
                 children: [
                   Padding(padding: EdgeInsets.only(left: 32.0)),
@@ -84,18 +84,20 @@ class CustomDrawer extends StatelessWidget {
                   ), //ADICIONAR RECEITA
                   Container(
                     padding: EdgeInsets.only(left: 22.0),
-                    child:
-                    DrawerTile(Icons.person_outline, "Meu perfil", '/perfil'),
+                    child: DrawerTile(
+                        Icons.person_outline, "Meu perfil", '/recipe'),
                   ), //MEU PERFIL
                   Container(
                     padding: EdgeInsets.only(left: 22.0),
-                    child: DrawerTile(Icons.help_outlined, "Tutorial", '/tutorial'),
+                    child: DrawerTile(
+                        Icons.help_outlined, "Tutorial", '/tutorial'),
                   ), //TUTORIAL
-                  Container(//SAIR
+                  Container(
+                    //SAIR
                     padding: EdgeInsets.only(left: 22.0),
                     color: Colors.transparent,
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         model.signOut();
                         Navigator.of(context).pop();
                         Navigator.of(context).pushReplacementNamed('/signin');
@@ -109,7 +111,9 @@ class CustomDrawer extends StatelessWidget {
                               size: 32.0,
                               color: Colors.white,
                             ),
-                            SizedBox(width: 32.0,),
+                            SizedBox(
+                              width: 32.0,
+                            ),
                             Text(
                               "Sair",
                               style: TextStyle(
@@ -137,17 +141,7 @@ class CustomDrawer extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(20, 15, 20, 1),
-                    child: Text(
-                      "ALGUM TEXTO ALEATORIO QUE AINDA VAMOS PENSAR E POR ENQUANTO É SÓ ESSA MENSAGEM MESMO",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
+
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                     child: Image.asset("images/morangoG.drawer.png"),

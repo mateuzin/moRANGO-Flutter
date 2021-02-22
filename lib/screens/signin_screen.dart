@@ -192,10 +192,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                     buttonType: ButtonType.facebook,
                                     buttonSize: ButtonSize.medium//, large
                                     ,onPressed: () {
-                                      model.signInWithFacebook(
-                                        onSuccess: _onSuccess,
-                                        onFail: _onFail,
-                                      );
+                                      model.signInWithFacebook();
                                 }),
                               ],
                             ),
@@ -238,7 +235,7 @@ class _SigninScreenState extends State<SigninScreen> {
     _scaffoldKey.currentState.showSnackBar(
         SnackBar(content: Text("Falha ao Entrar!"),
           backgroundColor: Colors.red,
-          duration: Duration(seconds: 1),)
+          duration: Duration(seconds: 2),)
     );
   }
 }
