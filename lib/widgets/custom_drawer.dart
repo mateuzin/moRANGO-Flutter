@@ -60,11 +60,8 @@ class CustomDrawer extends StatelessWidget {
                         child: CircleAvatar(
                           backgroundColor: Color.fromRGBO(125, 0, 0, 5),
                           radius: 40,
-                          child: Icon(
-                            Icons.person,
-                            size: 70,
-                            color: Colors.white,
-                          ),
+                          backgroundImage:
+                          NetworkImage("${!model.isLoggedIn() ? "" : model.userData["photoURL"]}"),
                         ),
                       ), //perfil
                       Container(

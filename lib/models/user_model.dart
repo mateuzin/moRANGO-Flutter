@@ -106,8 +106,9 @@ class UserModel extends Model {
 
       user = userCredential.user;
 
-      await _loadCurrentUser();
       await updateUserData(user);
+      await _loadCurrentUser();
+
       onSuccess();
       isLoading = false;
       notifyListeners();
@@ -120,7 +121,7 @@ class UserModel extends Model {
 
   }
 
-  Future<UserCredential> signInWithFacebook() async {
+  Future<UserCredential> signInWithFacebook({@required VoidCallback onSuccess,@required VoidCallback onFail}) async {
     try {
       final AccessToken accessToken = await FacebookAuth.instance.login();
 
@@ -129,7 +130,20 @@ class UserModel extends Model {
         accessToken.token,
       );
       // Once signed in, return the UserCredential
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+
+
+      final UserCredential userCredential =
+      await _auth.signInWithCredential(credential);
+
+      user = userCredential.user;
+
+      await updateUserData(user);
+      await _loadCurrentUser();
+
+      onSuccess();
+      isLoading = false;
+      notifyListeners();
+      
     } on FacebookAuthException catch (e) {
       // handle the FacebookAuthException
     } on FirebaseAuthException catch (e) {
