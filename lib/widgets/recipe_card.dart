@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morango_app/mo_rango_icons.dart';
 
 class RecipeCard extends StatelessWidget {
   @override
@@ -34,20 +35,42 @@ class RecipeCard extends StatelessWidget {
                   width: 9,
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      "5.0 *",
-                      style: TextStyle(
-                          color: Color.fromARGB(153, 241, 105, 105),
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "5.0",
+                          style: TextStyle(
+                              color: Color.fromARGB(153, 241, 105, 105),
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Padding(padding: EdgeInsets.only(left: 5)),
+                        Icon(MoRango.iconmorango,
+                            size: 16,
+                            color: Color.fromARGB(153, 241, 105, 105)),
+                        Padding(padding: EdgeInsets.only(left: 3)),
+                      ],
                     ),
-                    Text("40~50 *",
-                        style: TextStyle(
-                            color: Color.fromARGB(153, 241, 105, 105),
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold))
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 2),
+                    ),
+                    Row(
+                      children: [
+                        Text("40~50",
+                            style: TextStyle(
+                                color: Color.fromARGB(153, 241, 105, 105),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold)),
+                        Padding(padding: EdgeInsets.only(left: 5)),
+                        Icon(MoRango.iconclock,
+                            size: 16,
+                            color: Color.fromARGB(153, 241, 105, 105)),
+                        Padding(padding: EdgeInsets.only(left: 5)),
+                      ],
+                    )
                   ],
                 ),
               ],

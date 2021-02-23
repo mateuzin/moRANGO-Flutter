@@ -104,6 +104,9 @@
       - family: Mix
         fonts:
           - asset: icons/Mix.ttf
+      - family: MoRango
+        fonts:
+          - asset: icons/MoRango.ttf
     #
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
