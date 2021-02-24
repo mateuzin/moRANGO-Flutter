@@ -7,16 +7,16 @@ import 'package:morango_app/models/user_model.dart';
 import 'package:morango_app/widgets/app_bar.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:scoped_model/scoped_model.dart';
 
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+
+import 'package:scoped_model/scoped_model.dart';
 
 class MixScreen extends StatefulWidget {
   @override
   _MixScreenState createState() => _MixScreenState();
 }
+
 class Animal {
   final int id;
   final String name;
@@ -49,6 +49,8 @@ class _MixScreenState extends State<MixScreen> {
   // List<Animal> _selectedAnimals3 = [];
   // List<Animal> _selectedAnimals4 = [];
   // List<Animal> _selectedAnimals5 = [];
+
+  List<String> _ingredientes = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +61,7 @@ class _MixScreenState extends State<MixScreen> {
       ),
       backgroundColor: Color.fromRGBO(255, 166, 166, 1),
       body: ScopedModelDescendant<UserModel>(
-        builder: (context,child,model){
+        builder: (context, child, model) {
           return SingleChildScrollView(
             child: Container(
               alignment: Alignment.center,
@@ -95,21 +97,38 @@ class _MixScreenState extends State<MixScreen> {
                         MultiSelectBottomSheetField(
                           backgroundColor: Color.fromRGBO(255, 166, 166, 1),
                           unselectedColor: Colors.white,
-                          cancelText: Text("CANCELAR",style: TextStyle(color: Colors.white),),
-                          confirmText: Text("OK",style: TextStyle(color: Colors.white),),
+                          cancelText: Text(
+                            "CANCELAR",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          confirmText: Text(
+                            "OK",
+                            style: TextStyle(color: Colors.white),
+                          ),
                           initialChildSize: 0.4,
                           listType: MultiSelectListType.CHIP,
                           searchable: true,
-                          buttonText: Text("Coloque os ingredientes que possui!",
-                            style: TextStyle(color: Colors.white,fontSize: 15),),
+                          buttonText: Text(
+                            "Coloque os ingredientes que possui!",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
                           title: Text("Ingredientes",
-                              style: TextStyle(color: Colors.white,fontSize: 20)),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20)),
                           items: _items,
                           onConfirm: (values) {
-                            _selectedAnimals = values;
+                            _ingredientes = [];
+
+                            for (Animal ingrediente in values) {
+                              _ingredientes.add(ingrediente.name);
+                            }
+
+                            //for (String animal in _selectedAnimals.name) {}
                           },
                           chipDisplay: MultiSelectChipDisplay(
-                            textStyle: TextStyle(color:  Color.fromRGBO(255, 166, 166, 1),),
+                            textStyle: TextStyle(
+                              color: Color.fromRGBO(255, 166, 166, 1),
+                            ),
                             chipColor: Colors.white,
                             onTap: (value) {
                               setState(() {
@@ -120,12 +139,13 @@ class _MixScreenState extends State<MixScreen> {
                         ),
                         _selectedAnimals == null || _selectedAnimals.isEmpty
                             ? Container(
-                            padding: EdgeInsets.all(10),
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "",
-                              style: TextStyle(color: Colors.white,fontSize: 15),
-                            ))
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                ))
                             : Container(),
                       ],
                     ),
@@ -173,4 +193,3 @@ class _MixScreenState extends State<MixScreen> {
     );
   }
 }
-

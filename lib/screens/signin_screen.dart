@@ -1,14 +1,11 @@
 //signin
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:morango_app/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'home_screen.dart';
@@ -93,6 +90,8 @@ class _SigninScreenState extends State<SigninScreen> {
                           validator: (text) {
                             if (text.isEmpty || !text.contains("@"))
                               return "E-mail inválido!";
+                            else
+                              return null;
                           },
                         ),
                       ), //email
@@ -121,6 +120,8 @@ class _SigninScreenState extends State<SigninScreen> {
                           validator: (text) {
                             if (text.isEmpty || text.length < 6)
                               return "Senha Incorreta!";
+                            else
+                              return null;
                           },
                         ),
                       ), //senha
@@ -217,8 +218,6 @@ class _SigninScreenState extends State<SigninScreen> {
                                     onSuccess: _onSuccess,
                                     onFail: _onFail2,
                                   );
-
-                                  ;
                                 }),
                             Divider(
                               color: Colors.transparent,

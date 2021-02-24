@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
+import 'package:morango_app/widgets/bloco_de_texto.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uuid/uuid.dart';
 
 class AddRecipeScreen extends StatefulWidget {
   @override
   _AddRecipeScreenState createState() => _AddRecipeScreenState();
+}
+
+var uuid = Uuid();
+
+class Documento {
+  static String id = uuid.v4();
 }
 
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
@@ -29,40 +38,61 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     );
   }
 
-  // Widget _addItem(String item) {
-  //   return Container(
-  //     padding: EdgeInsets.fromLTRB(10, 0, 40, 4),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: [
-  //         Container(
-  //           padding: EdgeInsets.only(left: 10),
-  //           child: Text(
-  //             "Adicionar $item",
-  //             style: TextStyle(
-  //                 fontSize: 30,
-  //                 fontFamily: "Roboto",
-  //                 fontWeight: FontWeight.bold,
-  //                 color: Color.fromRGBO(100, 36, 36, 1)),
-  //           ),
-  //         ),
-  //         SizedBox(
-  //           child: RaisedButton(
-  //             color: Colors.white,
-  //             shape: CircleBorder(side: BorderSide(color: Colors.black)),
-  //             child: Icon(Icons.add, size: 25, color: Colors.black),
-  //             onPressed: () {},
-  //           ),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  void adcionarReceita() async {
+    docId = uuid.v4();
+    await firestore.collection('receitas').doc(Documento.id).set({
+      'titulo': _tituloController.text,
+      'descricao': _descricaoDaReceitaController.text,
+      'min': _minTempoDePreparoController.text,
+      'max': _maxTempoDePreparoController.text,
+      'date': DateTime.now(),
+      'video':
+          'https://www.youtube.com/watch?v=dGeEuyG_DIc&ab_channel=RickAstley-Topic',
+    });
 
+    for (var bloco in blocosDeTexto) {
+      await firestore
+          .collection('receitas')
+          .doc(Documento.id)
+          .collection('blocos')
+          .add({
+        'tituloBloco': bloco.tituloDoBloco,
+        'conteudoBloco': bloco.conteudoDoBloco
+      });
+    }
+    //firestore.collection('receitas').doc(docId).collection('ingredientes').add()
+    //await firestore.collection('receitas').doc(Documento.id).collection('blocos').add({'tituloBloco': ''});
+  }
+
+  String docId;
+  var tituloDaReceita = "Titulo";
   var editandoDescricao = false;
   var minTempoPreparo = 0;
   var maxTempoPreparo = 0;
-  String tituloReceita = '';
+  final _tituloController = TextEditingController();
+  final _descricaoDaReceitaController = TextEditingController();
+  final _minTempoDePreparoController = TextEditingController();
+  final _maxTempoDePreparoController = TextEditingController();
+  List<BlocoDeTexto> blocosDeTexto = [];
+
+  void mudarEstadoEditandoDescricao() {
+    if (editandoDescricao) {
+      setState(() {
+        editandoDescricao = false;
+      });
+    } else {
+      setState(() {
+        editandoDescricao = true;
+      });
+    }
+  }
+
+  void adcionarBlocoDeTexto() {
+    setState(() {
+      blocosDeTexto.add(new BlocoDeTexto());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,25 +117,26 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               child: editandoDescricao
                   ? Container(
                       child: TextFormField(
+                        controller: _descricaoDaReceitaController,
                         maxLines: 5,
                         decoration: InputDecoration(
                             suffixIcon: FlatButton(
                               child: Icon(Icons.close, color: Colors.red),
                               onPressed: () {
-                                if (editandoDescricao) {
-                                  setState(() {
-                                    editandoDescricao = false;
-                                  });
-                                } else {
-                                  setState(() {
-                                    editandoDescricao = true;
-                                  });
-                                }
+                                mudarEstadoEditandoDescricao();
                               },
                             ),
-                            labelText: 'Descrição da receita',
                             hintText: 'Descrição da receita',
-                            border: OutlineInputBorder(
+                            hintStyle: TextStyle(
+                                color: Color.fromRGBO(80, 73, 73, 1),
+                                fontSize: 20),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1.5),
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1.5),
                                 borderRadius: BorderRadius.circular(10))),
                       ),
                     )
@@ -153,12 +184,15 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       shape:
                           CircleBorder(side: BorderSide(color: Colors.black)),
                       child: Icon(Icons.add, size: 25, color: Colors.black),
-                      onPressed: () {},
+                      onPressed: () {
+                        adcionarBlocoDeTexto();
+                      },
                     ),
                   )
                 ],
               ),
             ),
+            ...blocosDeTexto,
 
             Container(
               padding: EdgeInsets.fromLTRB(15, 45, 15, 0),
@@ -172,14 +206,17 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ),
             ), //tempo de preparo
             Container(
-              padding: EdgeInsets.fromLTRB(10, 9, 180, 0),
+              width: double.infinity,
+              margin: EdgeInsets.fromLTRB(15, 10, 0, 0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 80,
-                    height: 40,
-                    child: TextField(
+                    width: 120,
+                    height: 45,
+                    child: TextFormField(
+                      textAlignVertical: TextAlignVertical.top,
+                      controller: _minTempoDePreparoController,
                       style: TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
                           suffixIcon: Icon(Icons.access_time_outlined,
@@ -193,11 +230,13 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  Text("~"),
+                  Text(" ~ "),
                   SizedBox(
-                    width: 80,
-                    height: 40,
-                    child: TextField(
+                    width: 120,
+                    height: 45,
+                    child: TextFormField(
+                      textAlignVertical: TextAlignVertical.top,
+                      controller: _maxTempoDePreparoController,
                       style: TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
                           suffixIcon: Icon(Icons.access_time_outlined,
@@ -215,7 +254,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(15, 45, 15, 0),
+              padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
               child: Text(
                 "Título da receita",
                 style: TextStyle(
@@ -229,8 +268,9 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               padding: EdgeInsets.fromLTRB(15, 6, 15, 20),
               child: SizedBox(
                 width: 350,
-                height: 30,
-                child: TextField(
+                height: 40,
+                child: TextFormField(
+                  controller: _tituloController,
                   style: TextStyle(color: Colors.black),
                   cursorColor: Colors.white,
                   decoration: InputDecoration(
@@ -283,7 +323,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       ],
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/recipe');
+                      adcionarReceita();
                     },
                   ),
                 ))
