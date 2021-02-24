@@ -151,8 +151,11 @@ class _SigninScreenState extends State<SigninScreen> {
 
                       Container(
                         //botão de entrar
+                        margin: EdgeInsets.only(bottom: 10),
+
                         child: RaisedButton(
                           color: Color.fromRGBO(0, 194, 122, 1),
+                          padding: EdgeInsets.symmetric(horizontal: 100),
                           child: Text(
                             "ENTRAR",
                             style: TextStyle(color: Colors.white),
@@ -176,14 +179,12 @@ class _SigninScreenState extends State<SigninScreen> {
                       ), //botão de entrar
 
                       Container(
-                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        width: double.infinity,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset("images/linha_preta.png"),
-                            Text(
-                              " OU ",
-                              style: TextStyle(fontSize: 14),
-                            ),
+                            Text(" OU ", style: TextStyle(fontSize: 14)),
                             Image.asset("images/linha_preta.png"),
                           ],
                         ),
