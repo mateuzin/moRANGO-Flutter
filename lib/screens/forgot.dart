@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:morango_app/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Forgot extends StatefulWidget {

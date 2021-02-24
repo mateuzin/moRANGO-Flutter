@@ -2,13 +2,15 @@
 
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
-
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:morango_app/models/user_model.dart';
-
+import 'package:morango_app/screens/signin_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
+
+import 'home_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -26,8 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  void _trocar() {
-    //ver a senha
+  void _trocar() {//ver a senha
     setState(() {
       _obscureText = !_obscureText;
     });
@@ -36,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _scaffoldKey,
+      key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 144, 144, 1),
           title: Image.asset("images/morango.appbar.png",
@@ -70,9 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             "images/morango.Singin.png",
                           ),
                         ), //imagem do morango
-                        Divider(
-                          color: Colors.transparent,
-                        ),
+                        Divider(color: Colors.transparent,),
                         Container(
                           child: Text(
                             'Registro:',
@@ -103,8 +102,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             validator: (text) {
                               if (text.isEmpty || !text.contains("@"))
                                 return "E-mail inválido!";
-                              else
-                                return null;
                             },
                           ),
                         ),
@@ -129,10 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             style: TextStyle(fontSize: 15.23),
                             keyboardType: TextInputType.name,
                             validator: (text) {
-                              if (text.isEmpty)
-                                return "Nome inválido!";
-                              else
-                                return null;
+                              if (text.isEmpty) return "Nome inválido!";
                             },
                           ),
                         ), //nome
@@ -149,10 +143,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               hintText: "Senha",
                               hintStyle: TextStyle(
                                   color: Color.fromRGBO(80, 73, 73, 1)),
-                              suffixIcon: IconButton(
-                                  icon: Icon(Icons.visibility,
-                                      color: Color.fromRGBO(80, 73, 73, 1)),
-                                  onPressed: _trocar),
+                              suffixIcon: IconButton(icon: Icon(Icons.visibility,color: Color.fromRGBO(80, 73, 73, 1)),
+                                  onPressed: _trocar
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
@@ -161,8 +154,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             validator: (text) {
                               if (text.isEmpty || text.length < 6)
                                 return "Senha tem que conter no minimo 6 caracteres";
-                              else
-                                return null;
                             },
                           ),
                         ), // senha
@@ -179,21 +170,17 @@ class _SignupScreenState extends State<SignupScreen> {
                               hintText: "Confirmar senha",
                               hintStyle: TextStyle(
                                   color: Color.fromRGBO(80, 73, 73, 1)),
-                              suffixIcon: IconButton(
-                                  icon: Icon(Icons.visibility,
-                                      color: Color.fromRGBO(80, 73, 73, 1)),
-                                  onPressed: _trocar),
+                              suffixIcon: IconButton(icon: Icon(Icons.visibility,color: Color.fromRGBO(80, 73, 73, 1)),
+                                  onPressed: _trocar
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                             ),
                             style: TextStyle(fontSize: 15.23),
                             validator: (text) {
-                              if (_passConfirmController.text !=
-                                  _passController.text)
+                              if (_passConfirmController.text!=_passController.text)
                                 return "Senhas diferentes!";
-                              else
-                                return null;
                             },
                           ),
                         ), // confirmar senha
@@ -209,21 +196,20 @@ class _SignupScreenState extends State<SignupScreen> {
                                   color: Colors.white, fontSize: 20.0),
                             ),
                             onPressed: () {
-                              {
-                                if (_formKey.currentState.validate()) {
-                                  Map<String, dynamic> userData = {
-                                    "name": _nameController.text,
-                                    "e-mail": _emailController.text,
-                                  };
+                              {if(_formKey.currentState.validate()){
+                              Map<String, dynamic> userData = {
+                              "name": _nameController.text,
+                              "e-mail": _emailController.text,
+                              };
 
-                                  model.signUp(
-                                    userData: userData,
-                                    email: _emailController.text,
-                                    pass: _passController.text,
-                                    onSuccess: _onSuccess,
-                                    onFail: _onFail,
-                                  );
-                                }
+                              model.signUp(
+                              userData: userData,
+                              email: _emailController.text,
+                              pass: _passController.text,
+                              onSuccess: _onSuccess,
+                              onFail: _onFail,
+                              );
+                              }
                               }
                             },
                             shape: RoundedRectangleBorder(
@@ -243,24 +229,23 @@ class _SignupScreenState extends State<SignupScreen> {
         ));
   }
 
-  void _onSuccess() {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text("Usuário criado com sucesso!"),
-      backgroundColor: Color.fromRGBO(0, 194, 122, 1),
-      duration: Duration(seconds: 2),
-    ));
-    Future.delayed(Duration(seconds: 2)).then((_) {
+  void _onSuccess(){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text("Usuário criado com sucesso!"),
+          backgroundColor: Color.fromRGBO(0, 194, 122, 1),
+          duration: Duration(seconds: 2),)
+    );
+    Future.delayed(Duration(seconds: 2)).then((_){
       Navigator.of(context).pop();
     });
     /*Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context)=>SigninScreen()));*/
   }
-
-  void _onFail() {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text("Falha ao criar Usuário!"),
-      backgroundColor: Colors.red,
-      duration: Duration(seconds: 2),
-    ));
+  void _onFail(){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text("Falha ao criar Usuário!"),
+          backgroundColor: Colors.redAccent,
+          duration: Duration(seconds: 2),)
+    );
   }
 }

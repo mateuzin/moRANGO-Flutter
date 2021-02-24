@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
           title: 'moRANGO',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            canvasColor: Colors.transparent,
             primaryColor: const Color.fromRGBO(255, 144, 144, 1),
             scaffoldBackgroundColor: const Color.fromRGBO(255, 144, 144, 1),
             appBarTheme: const AppBarTheme(elevation: 0),
