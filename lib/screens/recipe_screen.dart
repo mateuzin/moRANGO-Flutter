@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 
 class RecipeScreen extends StatelessWidget {
-  @override
+  // ignore: non_constant_identifier_names
   Widget _RecipeBar() {
     return AppBar(
       backgroundColor: Color.fromRGBO(255, 144, 144, 1),
@@ -28,12 +28,14 @@ class RecipeScreen extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _Divider() {
     return Padding(
         padding: EdgeInsets.symmetric(vertical: 7),
         child: Image.asset('images/linha_preta.png'));
   }
 
+  // ignore: non_constant_identifier_names
   Widget _Ingredients(String heading, String text) {
     return Column(
       children: [
@@ -57,6 +59,7 @@ class RecipeScreen extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _PrepStep(String text, int n) {
     return Container(
       padding: EdgeInsets.fromLTRB(8, 10, 8, 0),
@@ -79,6 +82,7 @@ class RecipeScreen extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _PrepMode(String heading, String text) {
     return Column(
       children: [
@@ -95,6 +99,7 @@ class RecipeScreen extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget _RatingStar() {
     return SizedBox(
       width: 50,

@@ -6,7 +6,6 @@ import 'package:morango_app/mix_icons.dart';
 import 'package:morango_app/widgets/app_bar.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MixScreen extends StatelessWidget {
   @override

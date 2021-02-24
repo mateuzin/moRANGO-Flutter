@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:scoped_model/scoped_model.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -19,7 +19,6 @@ class UserModel extends Model {
   //String email;
 
   bool isLoading = false;
-
 
   @override
   void addListener(VoidCallback listener) {
@@ -54,11 +53,16 @@ class UserModel extends Model {
     });
   }
 
-  void signIn({@required email,@required String pass,@required VoidCallback onSuccess,@required VoidCallback onFail}) async {
+  void signIn(
+      {@required email,
+      @required String pass,
+      @required VoidCallback onSuccess,
+      @required VoidCallback onFail}) async {
     isLoading = true;
     notifyListeners();
-    
-    _auth.signInWithEmailAndPassword(email: email, password: pass)
+
+    _auth
+        .signInWithEmailAndPassword(email: email, password: pass)
         .then((userCredential) async {
       user = userCredential.user;
 
@@ -79,7 +83,7 @@ class UserModel extends Model {
     return user != null;
   }
 
-  void signOut() async{
+  void signOut() async {
     await _auth.signOut();
 
     userData = Map();
@@ -90,38 +94,37 @@ class UserModel extends Model {
     _auth.sendPasswordResetEmail(email: email);
   }
 
-
-
-  void signInWithGoogle({@required VoidCallback onSuccess,@required VoidCallback onFail}) async {
+  void signInWithGoogle(
+      {@required VoidCallback onSuccess, @required VoidCallback onFail}) async {
     try {
       final GoogleSignInAccount googleUser = await googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
+          await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
           idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
 
       final UserCredential userCredential =
-      await _auth.signInWithCredential(credential);
+          await _auth.signInWithCredential(credential);
 
       user = userCredential.user;
 
-      await updateUserData(user);
+      updateUserData(user);
       await _loadCurrentUser();
 
       onSuccess();
       isLoading = false;
       notifyListeners();
-
-    }on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       onFail();
       isLoading = false;
       notifyListeners();
+      print(e);
     }
-
   }
 
-  Future<UserCredential> signInWithFacebook({@required VoidCallback onSuccess,@required VoidCallback onFail}) async {
+  Future<UserCredential> signInWithFacebook(
+      {@required VoidCallback onSuccess, @required VoidCallback onFail}) async {
     try {
       final AccessToken accessToken = await FacebookAuth.instance.login();
 
@@ -131,39 +134,39 @@ class UserModel extends Model {
       );
       // Once signed in, return the UserCredential
 
-
       final UserCredential userCredential =
-      await _auth.signInWithCredential(credential);
+          await _auth.signInWithCredential(credential);
 
       user = userCredential.user;
 
-      await updateUserData(user);
+      updateUserData(user);
       await _loadCurrentUser();
 
       onSuccess();
       isLoading = false;
       notifyListeners();
-      
     } on FacebookAuthException catch (e) {
+      print(e);
       // handle the FacebookAuthException
     } on FirebaseAuthException catch (e) {
+      print(e);
       // handle the FirebaseAuthException
     } finally {}
     return null;
   }
 
-  void updateUserData(User user)async{
-    DocumentReference ref = FirebaseFirestore.instance.collection("users").doc(user.uid);
+  void updateUserData(User user) async {
+    DocumentReference ref =
+        FirebaseFirestore.instance.collection("users").doc(user.uid);
 
     return ref.set({
       "e-mail": user.email,
       "photoURL": user.photoURL,
       "name": user.displayName,
-    }
-    );
+    });
   }
 
-
+  // ignore: missing_return
   Future<User> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
     await FirebaseFirestore.instance
@@ -172,11 +175,10 @@ class UserModel extends Model {
         .set(userData);
   }
 
-  Future<Null> _loadCurrentUser() async{
-    if(user == null)
-      user = await _auth.currentUser;
-    if(user != null){
-      if(userData["naame"]== null){
+  Future<Null> _loadCurrentUser() async {
+    if (user == null) user = _auth.currentUser;
+    if (user != null) {
+      if (userData["naame"] == null) {
         DocumentSnapshot docUser = await FirebaseFirestore.instance
             .collection("users")
             .doc(user.uid)
@@ -186,5 +188,4 @@ class UserModel extends Model {
     }
     notifyListeners();
   }
-
 }
