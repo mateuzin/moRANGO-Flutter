@@ -177,11 +177,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       ), //botão de entrar
 
                       Container(
-<<<<<<< HEAD
-                        padding: EdgeInsets.fromLTRB(38, 18, 18, 5),
-=======
                         padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
->>>>>>> b7f65cc5a2b374effdd03b26058c3f91f8fcbe74
                         child: Row(
                           children: <Widget>[
                             Image.asset("images/linha_preta.png"),
@@ -230,12 +226,8 @@ class _SigninScreenState extends State<SigninScreen> {
                                 buttonSize: ButtonSize.medium //, large
                                 ,
                                 onPressed: () {
-<<<<<<< HEAD
                                   model.signInWithFacebook(
                                       onFail: () {}, onSuccess: () {});
-=======
-                                  model.signInWithFacebook();
->>>>>>> b7f65cc5a2b374effdd03b26058c3f91f8fcbe74
                                 }),
                           ],
                         ),
