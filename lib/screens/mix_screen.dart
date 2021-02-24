@@ -133,7 +133,7 @@ class MixScreen extends StatelessWidget {
                 ), //ingredientes 2*/
 
               Container(
-                margin: EdgeInsets.fromLTRB(0, 250, 0, 0),
+                margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 child: RaisedButton(
                   onPressed: () {
@@ -145,7 +145,7 @@ class MixScreen extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Mix.mix,
-                        size: 100,
+                        size: 90,
                         color: Colors.white,
                       ),
                       Text(

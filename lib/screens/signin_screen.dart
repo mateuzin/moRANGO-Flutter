@@ -20,7 +20,6 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
-
   bool _obscureText = true;
   final _passController = TextEditingController();
   final _emailController = TextEditingController();
@@ -28,7 +27,8 @@ class _SigninScreenState extends State<SigninScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  void _trocar() {//ver a senha
+  void _trocar() {
+    //ver a senha
     setState(() {
       _obscureText = !_obscureText;
     });
@@ -37,91 +37,109 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+        key: _scaffoldKey,
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 144, 144, 1),
-          title:
-          Image.asset("images/morango.appbar.png", height: 50, width: 119), //imagem do appbar possivelmente tirar**
+          title: Image.asset("images/morango.appbar.png",
+              height: 50, width: 119), //imagem do appbar possivelmente tirar**
           centerTitle: true,
         ),
         backgroundColor: Colors.white,
-        body: ScopedModelDescendant<UserModel>(
-            builder:(context,child, model){
-              if(model.isLoading)
-                return Center(child: CircularProgressIndicator(),);
+        body:
+            ScopedModelDescendant<UserModel>(builder: (context, child, model) {
+          if (model.isLoading)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
 
-              return Form(
-                key: _formKey,
-                child: ListView(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/SinginScreenBackground.jpg"), //imagem de fundo **tem q arrumar
-                          fit: BoxFit.cover,
+          return Form(
+            key: _formKey,
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          "images/SinginScreenBackground.jpg"), //imagem de fundo **tem q arrumar
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        //imagem do morango
+                        child: Image.asset(
+                          "images/morango.Singin.png",
                         ),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          Container(//imagem do morango
-                            child: Image.asset(
-                              "images/morango.Singin.png",
+                      ), //imagem do morango
+
+                      Container(
+                        //email e nome
+                        padding: EdgeInsets.fromLTRB(20, 25, 20, 7),
+                        child: TextFormField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(110, 213, 161, 1),
+                            hintText: "E-mail",
+                            hintStyle:
+                                TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
-                          ),//imagem do morango
+                          ),
+                          style: TextStyle(fontSize: 15.23),
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (text) {
+                            if (text.isEmpty /*|| !text.contains("@")*/)
+                              return "E-mail inválido!";
+                          },
+                        ),
+                      ), //email
 
-                          Container(//email e nome
-                            padding: EdgeInsets.fromLTRB(20, 25, 20, 7),
-                            child: TextFormField(
-                              controller: _emailController,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromRGBO(110, 213, 161, 1),
-                                hintText: "E-mail",
-                                hintStyle: TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              style: TextStyle(fontSize: 15.23),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (text){
-                                if(text.isEmpty /*|| !text.contains("@")*/) return "E-mail inválido!";},
+                      Container(
+                        //senha
+                        padding: EdgeInsets.fromLTRB(20, 14, 20, 8),
+                        child: TextFormField(
+                          controller: _passController,
+                          obscureText: _obscureText,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(110, 213, 161, 1),
+                            hintText: "Senha",
+                            hintStyle:
+                                TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
-                          ),//email
+                            suffixIcon: IconButton(
+                                icon: Icon(Icons.visibility,
+                                    color: Color.fromRGBO(80, 73, 73, 1)),
+                                onPressed: _trocar),
+                          ),
+                          style: TextStyle(fontSize: 15.23),
+                          validator: (text) {
+                            if (text.isEmpty || text.length < 6)
+                              return "Senha Incorreta!";
+                          },
+                        ),
+                      ), //senha
 
-                          Container(//senha
-                            padding: EdgeInsets.fromLTRB(20, 14, 20, 8),
-                            child: TextFormField(
-                              controller: _passController,
-                              obscureText: _obscureText,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromRGBO(110, 213, 161, 1),
-                                hintText: "Senha",
-                                hintStyle: TextStyle(color: Color.fromRGBO(80, 73, 73, 1)),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                suffixIcon: IconButton(icon: Icon(Icons.visibility,color: Color.fromRGBO(80, 73, 73, 1)),
-                                    onPressed: _trocar
-                                ),
-                              ),
-                              style: TextStyle(fontSize: 15.23),
-                              validator: (text){
-                                if(text.isEmpty|| text.length < 6 ) return "Senha Incorreta!";},
-                            ),
-                          ), //senha
+                      FlatButton(
+                        //esqueceu a senha
+                        padding: EdgeInsets.fromLTRB(220, 0, 0, 0),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/forgot1');
+                        },
+                        child: Text(
+                          "Esqueci minha senha.",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ), //esqueceu a senha
 
-                          FlatButton(//esqueceu a senha
-                            padding: EdgeInsets.fromLTRB(220, 0, 0, 0) ,
-                            onPressed: (){Navigator.of(context).pushNamed('/forgot1');},
-                            child:
-                            Text("Esqueci minha senha.", style: TextStyle(
-                              fontSize: 12,
-                            ),),
-                          ), //esqueceu a senha
-
-                          /*Container(//botão de manter conectado
+                      /*Container(//botão de manter conectado
                             padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
                             child: Row(
                               children: <Widget>[
@@ -132,112 +150,129 @@ class _SigninScreenState extends State<SigninScreen> {
                             ),
                           ),//botão de manter conectado*/
 
-
-                          Container( //botão de entrar
-                            child:
-                            RaisedButton(
-                              color: Color.fromRGBO(0,194,122,1),
-                              child: Text("ENTRAR",style: TextStyle(color: Colors.white),),
-                              onPressed: (){if(_formKey.currentState.validate()){
-                                model.signIn(
-                                  email: _emailController.text,
-                                  pass: _passController.text,
-                                  onSuccess: _onSuccess,
-                                  onFail: _onFail,
-                                );
-                              }
-                              },
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Color.fromRGBO(0,194,122,1),)
-                              ),
-                            ),
-                          ),//botão de entrar
-
-                          Container(
-                            padding: EdgeInsets.fromLTRB(38,18, 18, 5) ,
-                            child: Row(
-                              children: <Widget>[
-                                Image.asset("images/linha_preta.png"),
-                                Text(" OU ",
-                                  style: TextStyle(fontSize: 14),),
-                                Image.asset("images/linha_preta.png"),
-                              ],
-                            ),
+                      Container(
+                        //botão de entrar
+                        child: RaisedButton(
+                          color: Color.fromRGBO(0, 194, 122, 1),
+                          child: Text(
+                            "ENTRAR",
+                            style: TextStyle(color: Colors.white),
                           ),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              model.signIn(
+                                email: _emailController.text,
+                                pass: _passController.text,
+                                onSuccess: _onSuccess,
+                                onFail: _onFail,
+                              );
+                            }
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(
+                                color: Color.fromRGBO(0, 194, 122, 1),
+                              )),
+                        ),
+                      ), //botão de entrar
 
-                          Container(
-                            child: Text("Faça login com suas redes sociais", style: TextStyle(
-                              fontSize: 12,
-                            ),),
-                          ),
-                          Divider(color: Colors.transparent,),
-                          Container ( //icones do facebook e google
-                            padding: EdgeInsets.symmetric(horizontal: 35),
-                            child: Column(
-                              children: [
-                                SignInButton(
-                                    buttonType: ButtonType.google,
-                                    buttonSize: ButtonSize.medium//, large
-                                    ,onPressed: () {
-                                      model.signInWithGoogle(
-                                        onSuccess: _onSuccess,
-                                        onFail: _onFail,
-                                      );
-
-                                      ;
-                                    }),
-                                Divider(color: Colors.transparent,),
-                                SignInButton(
-                                    buttonType: ButtonType.facebook,
-                                    buttonSize: ButtonSize.medium//, large
-                                    ,onPressed: () {
-                                      model.signInWithFacebook();
-                                }),
-                              ],
+                      Container(
+                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset("images/linha_preta.png"),
+                            Text(
+                              " OU ",
+                              style: TextStyle(fontSize: 14),
                             ),
-                          ),//icones facebook e google
-
-                          Container(//botão de cadastro
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 140),
-                            child:
-                            SizedBox(
-                              width: 250.0,
-                              child: RaisedButton(
-                                color: Color.fromRGBO(0,194,122,1),
-                                child: Text("    CADASTRE-SE \n GRATUITAMENTE",
-                                  style: TextStyle(fontSize: 17.23,color: Colors.white),
-                                ),
-                                onPressed: (){Navigator.of(context).pushNamed("/signup");},
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Color.fromRGBO(0,194,122,1))
-                                ),
-                              ),
-                            ),
-                          ),//botão de cadastro
-                        ],
+                            Image.asset("images/linha_preta.png"),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+
+                      Container(
+                        child: Text(
+                          "Faça login com suas redes sociais",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.transparent,
+                      ),
+                      Container(
+                        //icones do facebook e google
+                        padding: EdgeInsets.symmetric(horizontal: 35),
+                        child: Column(
+                          children: [
+                            SignInButton(
+                                buttonType: ButtonType.google,
+                                buttonSize: ButtonSize.medium //, large
+                                ,
+                                onPressed: () {
+                                  model.signInWithGoogle(
+                                    onSuccess: _onSuccess,
+                                    onFail: _onFail,
+                                  );
+
+                                  ;
+                                }),
+                            Divider(
+                              color: Colors.transparent,
+                            ),
+                            SignInButton(
+                                buttonType: ButtonType.facebook,
+                                buttonSize: ButtonSize.medium //, large
+                                ,
+                                onPressed: () {
+                                  model.signInWithFacebook();
+                                }),
+                          ],
+                        ),
+                      ), //icones facebook e google
+
+                      Container(
+                        //botão de cadastro
+                        padding: EdgeInsets.fromLTRB(20, 20, 20, 140),
+                        child: SizedBox(
+                          width: 250.0,
+                          child: RaisedButton(
+                            color: Color.fromRGBO(0, 194, 122, 1),
+                            child: Text(
+                              "    CADASTRE-SE \n GRATUITAMENTE",
+                              style: TextStyle(
+                                  fontSize: 17.23, color: Colors.white),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pushNamed("/signup");
+                            },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(
+                                    color: Color.fromRGBO(0, 194, 122, 1))),
+                          ),
+                        ),
+                      ), //botão de cadastro
+                    ],
+                  ),
                 ),
-              );
-            }
-        )
-    );
+              ],
+            ),
+          );
+        }));
   }
-  void _onSuccess(){
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context)=>HomeScreen())
-      );
+
+  void _onSuccess() {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
-  void _onFail(){
-    _scaffoldKey.currentState.showSnackBar(
-        SnackBar(content: Text("Falha ao Entrar!"),
-          backgroundColor: Colors.red,
-          duration: Duration(seconds: 2),)
-    );
+
+  void _onFail() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text("Falha ao Entrar!"),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    ));
   }
 }
-
-
