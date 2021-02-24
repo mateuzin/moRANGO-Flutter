@@ -29,37 +29,40 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     );
   }
 
-  Widget _addItem(String item) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(10, 0, 40, 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 10),
-            child: Text(
-              "Adicionar $item",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(100, 36, 36, 1)),
-            ),
-          ),
-          SizedBox(
-            child: RaisedButton(
-              color: Colors.white,
-              shape: CircleBorder(side: BorderSide(color: Colors.black)),
-              child: Icon(Icons.add, size: 25, color: Colors.black),
-              onPressed: () {},
-            ),
-          )
-        ],
-      ),
-    );
-  }
+  // Widget _addItem(String item) {
+  //   return Container(
+  //     padding: EdgeInsets.fromLTRB(10, 0, 40, 4),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Container(
+  //           padding: EdgeInsets.only(left: 10),
+  //           child: Text(
+  //             "Adicionar $item",
+  //             style: TextStyle(
+  //                 fontSize: 30,
+  //                 fontFamily: "Roboto",
+  //                 fontWeight: FontWeight.bold,
+  //                 color: Color.fromRGBO(100, 36, 36, 1)),
+  //           ),
+  //         ),
+  //         SizedBox(
+  //           child: RaisedButton(
+  //             color: Colors.white,
+  //             shape: CircleBorder(side: BorderSide(color: Colors.black)),
+  //             child: Icon(Icons.add, size: 25, color: Colors.black),
+  //             onPressed: () {},
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  var editandoDescricao = true;
+  var editandoDescricao = false;
+  var minTempoPreparo = 0;
+  var maxTempoPreparo = 0;
+  String tituloReceita = '';
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +84,29 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
             ), //caixinha de adicionar foto da receita
             Container(
               padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
-              child: !editandoDescricao
+              child: editandoDescricao
                   ? Container(
                       child: TextFormField(
-                        decoration: InputDecoration(),
+                        maxLines: 5,
+                        decoration: InputDecoration(
+                            suffixIcon: FlatButton(
+                              child: Icon(Icons.close, color: Colors.red),
+                              onPressed: () {
+                                if (editandoDescricao) {
+                                  setState(() {
+                                    editandoDescricao = false;
+                                  });
+                                } else {
+                                  setState(() {
+                                    editandoDescricao = true;
+                                  });
+                                }
+                              },
+                            ),
+                            labelText: 'Descrição da receita',
+                            hintText: 'Descrição da receita',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10))),
                       ),
                     )
                   : FlatButton(
@@ -110,10 +132,34 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       ),
                     ),
             ),
-            _addItem("Título"),
-            _addItem("Texto"),
-            _addItem("Fotos"),
-            _addItem("Vídeos"),
+            Container(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                    child: Text(
+                      "Adicionar bloco de texto",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(100, 36, 36, 1)),
+                    ),
+                  ),
+                  SizedBox(
+                    child: RaisedButton(
+                      color: Colors.white,
+                      shape:
+                          CircleBorder(side: BorderSide(color: Colors.black)),
+                      child: Icon(Icons.add, size: 25, color: Colors.black),
+                      onPressed: () {},
+                    ),
+                  )
+                ],
+              ),
+            ),
+
             Container(
               padding: EdgeInsets.fromLTRB(15, 45, 15, 0),
               child: Text(
@@ -203,63 +249,14 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
             Container(
               padding: EdgeInsets.fromLTRB(10, 0, 10, 25),
               child: Text(
-                "Adcione os ingredientes e as quantidades que serão usados nessa receita",
+                "Adcione os ingredientes que serão utilizados nessa receita para que nossos usuários possam encontrá-la",
                 style: TextStyle(
                     fontSize: 20,
                     fontFamily: "Roboto",
-                    color: Color.fromRGBO(100, 36, 36, 1)),
+                    color: Color.fromRGBO(0, 0, 0, 80)),
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(10, 9, 10, 100),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 180,
-                    height: 30,
-                    child: TextField(
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black))),
-                      keyboardType: TextInputType.text,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 80,
-                    height: 30,
-                    child: TextField(
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black))),
-                      keyboardType: TextInputType.text,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 60,
-                    height: 30,
-                    child: TextField(
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black))),
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+
             Container(
                 padding: EdgeInsets.fromLTRB(120, 0, 120, 100),
                 child: SizedBox(
@@ -269,7 +266,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                     color: Color.fromRGBO(110, 213, 161, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-/*                      side: BorderSide(color: Colors.black)*/
+                      /* side: BorderSide(color: Colors.black)*/
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
