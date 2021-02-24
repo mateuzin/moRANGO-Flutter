@@ -6,7 +6,6 @@ import 'package:morango_app/mix_icons.dart';
 import 'package:morango_app/widgets/app_bar.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MixScreen extends StatelessWidget {
   @override
@@ -133,7 +132,7 @@ class MixScreen extends StatelessWidget {
                 ), //ingredientes 2*/
 
               Container(
-                margin: EdgeInsets.fromLTRB(0, 250, 0, 0),
+                margin: EdgeInsets.fromLTRB(0, 200, 0, 0),
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 child: RaisedButton(
                   onPressed: () {
@@ -145,7 +144,7 @@ class MixScreen extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Mix.mix,
-                        size: 100,
+                        size: 90,
                         color: Colors.white,
                       ),
                       Text(

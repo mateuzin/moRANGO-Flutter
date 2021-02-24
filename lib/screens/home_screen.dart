@@ -22,21 +22,27 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(17, 20, 0, 25),
+              padding: EdgeInsets.fromLTRB(17, 20, 0, 15),
               child: Text(
                 "Receitas da semana",
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                    fontSize: 30, color: Color.fromARGB(222, 0, 0, 0)),
+                    fontFamily: 'Pacifico', fontSize: 30, color: Colors.white
+                    //Color.fromARGB(222, 0, 0, 0), <- preto. Eu gostei do branco, se quiserem trocar
+                    //se quiserem trocar fiquem a vontade -luiz
+                    ),
               ),
             ),
-            Wrap(
-              children: [
-                RecipeCard(),
-                RecipeCard(),
-                RecipeCard(),
-                RecipeCard(),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  RecipeCard(),
+                  RecipeCard(),
+                  RecipeCard(),
+                  RecipeCard(),
+                ],
+              ),
             ),
           ],
         ),

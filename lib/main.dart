@@ -13,7 +13,6 @@ import 'package:morango_app/screens/signin_screen.dart';
 import 'package:morango_app/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:morango_app/models/user_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
