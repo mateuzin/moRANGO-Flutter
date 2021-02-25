@@ -7,12 +7,11 @@ import 'package:morango_app/models/user_model.dart';
 import 'package:morango_app/widgets/app_bar.dart';
 import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
-
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:scoped_model/scoped_model.dart';
-
 import 'package:after_layout/after_layout.dart';
+
 
 class MixScreen extends StatefulWidget {
   @override
@@ -137,7 +136,10 @@ class _MixScreenState extends State<MixScreen>
                                   TextStyle(color: Colors.white, fontSize: 20)),
                           items: itensParaColocar,
                           onConfirm: (values) {
-                            _ingredienteSelecionados = values;
+                           setState(() {
+                             _ingredienteSelecionados = values;
+                           });
+                           print(_ingredienteSelecionados);
                           },
                           chipDisplay: MultiSelectChipDisplay(
                             textStyle: TextStyle(
@@ -146,7 +148,7 @@ class _MixScreenState extends State<MixScreen>
                             chipColor: Colors.white,
                             onTap: (value) {
                               setState(() {
-                                _ingredienteSelecionados.remove(value);
+                               print(value);
                               });
                             },
                           ),
@@ -157,7 +159,7 @@ class _MixScreenState extends State<MixScreen>
                                 padding: EdgeInsets.all(10),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  "Items Selecionados",
+                                  "Nenhum Ingrediente Selecionado",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 15),
                                 ))

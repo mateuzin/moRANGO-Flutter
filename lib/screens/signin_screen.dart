@@ -220,10 +220,10 @@ class _SigninScreenState extends State<SigninScreen> {
                                 buttonSize: ButtonSize.medium //, large
                                 ,
                                 onPressed: () {
-                                  model.signInWithFacebook(
-                                    onSuccess: _onSuccess,
-                                    onFail: _onFail2,
-                                  );
+                                  // model.signInWithFacebook(
+                                  //   onSuccess: _onSuccess,
+                                  //   onFail: _onFail2,
+                                  // );
                                 }),
                           ],
                         ),

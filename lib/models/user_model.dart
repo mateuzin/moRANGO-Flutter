@@ -128,42 +128,42 @@ class UserModel extends Model {
     }
   }
 
-  Future<UserCredential> signInWithFacebook(
-      {@required VoidCallback onSuccess, @required VoidCallback onFail}) async {
-    try {
-      final AccessToken accessToken = await FacebookAuth.instance.login();
-
-      // Create a credential from the access token
-      final FacebookAuthCredential credential = FacebookAuthProvider.credential(
-        accessToken.token,
-      );
-      // Once signed in, return the UserCredential
-
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-
-      user = userCredential.user;
-
-      // ignore: await_only_futures
-      await updateUserData(user);
-      await _loadCurrentUser();
-
-      onSuccess();
-      isLoading = false;
-      notifyListeners();
-    } on FacebookAuthException catch (e) {
-      onFail();
-      isLoading = false;
-      notifyListeners();
-      print(e);
-      // handle the FacebookAuthException
-    } on FirebaseAuthException catch (e) {
-      // handle the FirebaseAuthException
-      print(e);
-    } finally {}
-
-    return null;
-  }
+  // Future<UserCredential> signInWithFacebook(
+  //     {@required VoidCallback onSuccess, @required VoidCallback onFail}) async {
+  //   try {
+  //     final AccessToken accessToken = await FacebookAuth.instance.login();
+  //
+  //     // Create a credential from the access token
+  //     final FacebookAuthCredential credential = FacebookAuthProvider.credential(
+  //       accessToken.token,
+  //     );
+  //     // Once signed in, return the UserCredential
+  //
+  //     final UserCredential userCredential =
+  //         await _auth.signInWithCredential(credential);
+  //
+  //     user = userCredential.user;
+  //
+  //     // ignore: await_only_futures
+  //     await updateUserData(user);
+  //     await _loadCurrentUser();
+  //
+  //     onSuccess();
+  //     isLoading = false;
+  //     notifyListeners();
+  //   } on FacebookAuthException catch (e) {
+  //     onFail();
+  //     isLoading = false;
+  //     notifyListeners();
+  //     print(e);
+  //     // handle the FacebookAuthException
+  //   } on FirebaseAuthException catch (e) {
+  //     // handle the FirebaseAuthException
+  //     print(e);
+  //   } finally {}
+  //
+  //   return null;
+  // }
 
   void updateUserData(User user) async {
     DocumentReference ref =
