@@ -9,48 +9,69 @@ import 'package:morango_app/widgets/custom_bottom_navigation_bar.dart';
 import 'package:morango_app/widgets/custom_drawer.dart';
 
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:scoped_model/scoped_model.dart';
+
+import 'package:after_layout/after_layout.dart';
 
 class MixScreen extends StatefulWidget {
   @override
   _MixScreenState createState() => _MixScreenState();
 }
 
-class Animal {
-  final int id;
-  final String name;
+class Ingrediente {
+  String id;
+  String name;
 
-  Animal({
+  Ingrediente({
     this.id,
     this.name,
   });
 }
 
-class _MixScreenState extends State<MixScreen> {
-  static List<Animal> _animals = [
-    Animal(id: 1, name: "Limão"),
-    Animal(id: 2, name: "Arroz"),
-    Animal(id: 3, name: "Batata"),
-    Animal(id: 4, name: "Farinha"),
-    Animal(id: 5, name: "Fermento"),
-    Animal(id: 6, name: "Leite"),
-    Animal(id: 7, name: "Ovo"),
-    Animal(id: 8, name: "Queijo"),
-    Animal(id: 9, name: "Creme de Leite"),
-    Animal(id: 10, name: "Chocolate em Pó"),
-    Animal(id: 11, name: "Açucar"),
-  ];
-  final _items = _animals
-      .map((animal) => MultiSelectItem<Animal>(animal, animal.name))
-      .toList();
-  List<Animal> _selectedAnimals = [];
-  // List<Animal> _selectedAnimals2 = [];
-  // List<Animal> _selectedAnimals3 = [];
-  // List<Animal> _selectedAnimals4 = [];
-  // List<Animal> _selectedAnimals5 = [];
+class _MixScreenState extends State<MixScreen>
+    with AfterLayoutMixin<MixScreen> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  List<String> _ingredientes = [];
+  @override
+  void afterFirstLayout(BuildContext context) {
+    // Calling the same function "after layout" to resolve the issue.
+    pegarIngredientes();
+  }
+
+  void pegarIngredientes() async {
+    var documentos = await firestore.collection("ingredientes").get();
+    List<QueryDocumentSnapshot> listaDeQuery = documentos.docs;
+    for (QueryDocumentSnapshot doczin in listaDeQuery) {
+      mapa.add(doczin.data());
+    }
+    pegarItens();
+  }
+
+  List<Map<String, dynamic>> mapa = [];
+
+  void pegarItens() {
+    List<Ingrediente> ingredientes = [];
+    for (var map in mapa) {
+      Ingrediente ingrediente = Ingrediente();
+      ingrediente.id = map['id'];
+      ingrediente.name = map['nome'];
+      ingredientes.add(ingrediente);
+    }
+    final _items = ingredientes
+        .map((ingrediente) =>
+            MultiSelectItem<Ingrediente>(ingrediente, ingrediente.name))
+        .toList();
+    mapa = [];
+    setState(() {
+      itensParaColocar = _items;
+    });
+  }
+
+  List<MultiSelectItem<dynamic>> itensParaColocar = [];
+
+  bool valorX = true;
+  List<Ingrediente> _ingredienteSelecionados = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,6 +116,7 @@ class _MixScreenState extends State<MixScreen> {
                     child: Column(
                       children: <Widget>[
                         MultiSelectBottomSheetField(
+                          buttonIcon: Icon(Icons.arrow_downward),
                           backgroundColor: Color.fromRGBO(255, 166, 166, 1),
                           unselectedColor: Colors.white,
                           cancelText: Text(
@@ -115,15 +137,9 @@ class _MixScreenState extends State<MixScreen> {
                           title: Text("Ingredientes",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20)),
-                          items: _items,
+                          items: itensParaColocar,
                           onConfirm: (values) {
-                            _ingredientes = [];
-
-                            for (Animal ingrediente in values) {
-                              _ingredientes.add(ingrediente.name);
-                            }
-
-                            //for (String animal in _selectedAnimals.name) {}
+                            _ingredienteSelecionados = values;
                           },
                           chipDisplay: MultiSelectChipDisplay(
                             textStyle: TextStyle(
@@ -132,12 +148,13 @@ class _MixScreenState extends State<MixScreen> {
                             chipColor: Colors.white,
                             onTap: (value) {
                               setState(() {
-                                _selectedAnimals.remove(value);
+                                _ingredienteSelecionados.remove(value);
                               });
                             },
                           ),
                         ),
-                        _selectedAnimals == null || _selectedAnimals.isEmpty
+                        _ingredienteSelecionados == null ||
+                                _ingredienteSelecionados.isEmpty
                             ? Container(
                                 padding: EdgeInsets.all(10),
                                 alignment: Alignment.centerLeft,
@@ -158,9 +175,7 @@ class _MixScreenState extends State<MixScreen> {
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
                     child: RaisedButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/recipes');
-                      },
+                      onPressed: () {},
                       color: Color.fromRGBO(110, 213, 161, 1),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

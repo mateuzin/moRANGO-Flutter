@@ -39,6 +39,15 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   }
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  void pegarIngredientes() async {
+    var documentos = await firestore.collection("ingredientes").get();
+    List<QueryDocumentSnapshot> listaDeQuery = documentos.docs;
+    for (QueryDocumentSnapshot doczin in listaDeQuery) {
+      mapa.add(doczin.data());
+    }
+  }
+
   void adcionarReceita() async {
     docId = uuid.v4();
     await firestore.collection('receitas').doc(Documento.id).set({
@@ -75,6 +84,18 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   final _minTempoDePreparoController = TextEditingController();
   final _maxTempoDePreparoController = TextEditingController();
   List<BlocoDeTexto> blocosDeTexto = [];
+  List<String> listaDeIngredientes = [];
+  List<Map<String, dynamic>> mapa = [];
+  var ingredientezinho = '';
+
+  // void transformarEmVariavel() {
+  //   for (var map in mapa) {
+  //     listaDeIngredientes.add(map['nome']);
+  //     ingredientezinho = map['nome'];
+  //   }
+  //   print(listaDeIngredientes);
+  //   print(ingredientezinho);
+  // }
 
   void mudarEstadoEditandoDescricao() {
     if (editandoDescricao) {
@@ -323,7 +344,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       ],
                     ),
                     onPressed: () {
-                      adcionarReceita();
+                      pegarIngredientes();
                     },
                   ),
                 ))
