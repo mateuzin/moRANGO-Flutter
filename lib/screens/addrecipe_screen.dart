@@ -186,22 +186,27 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _image == null
-                ? Text(
-                    'Sem Imagem no Momento',
-                    textAlign: TextAlign.center,
+                ? Column(
+                    children: [
+                      Text(
+                        'Sem Imagem no Momento',
+                        textAlign: TextAlign.center,
+                      ),
+                      FlatButton(
+                        onPressed: getImage,
+                        child: SizedBox(
+                          width: 400,
+                          height: 265,
+                          child: Container(
+                            color: Colors.transparent,
+                            child:
+                                Icon(Icons.add, size: 200, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
                   )
                 : Image.file(_image),
-            FlatButton(
-              onPressed: getImage,
-              child: SizedBox(
-                width: 400,
-                height: 265,
-                child: Container(
-                  color: Colors.grey,
-                  child: Icon(Icons.add, size: 200, color: Colors.white),
-                ),
-              ),
-            ),
 
             Container(
               padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
@@ -388,7 +393,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
               ),
             ),
             Container(
-
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(25)),
                 color: Color.fromRGBO(110, 213, 161, 1),
