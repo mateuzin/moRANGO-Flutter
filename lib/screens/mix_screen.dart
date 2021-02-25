@@ -43,16 +43,16 @@ class _MixScreenState extends State<MixScreen>
     var documentos = await firestore.collection("ingredientes").get();
     List<QueryDocumentSnapshot> listaDeQuery = documentos.docs;
     for (QueryDocumentSnapshot doczin in listaDeQuery) {
-      mapa.add(doczin.data());
+      mapaDosIngredientes.add(doczin.data());
     }
     pegarItens();
   }
 
-  List<Map<String, dynamic>> mapa = [];
+  List<Map<String, dynamic>> mapaDosIngredientes = [];
 
   void pegarItens() {
     List<Ingrediente> ingredientes = [];
-    for (var map in mapa) {
+    for (var map in mapaDosIngredientes) {
       Ingrediente ingrediente = Ingrediente();
       ingrediente.id = map['id'];
       ingrediente.name = map['nome'];
@@ -62,15 +62,13 @@ class _MixScreenState extends State<MixScreen>
         .map((ingrediente) =>
             MultiSelectItem<Ingrediente>(ingrediente, ingrediente.name))
         .toList();
-    mapa = [];
+    mapaDosIngredientes = [];
     setState(() {
       itensParaColocar = _items;
     });
   }
 
   List<MultiSelectItem<dynamic>> itensParaColocar = [];
-
-  bool valorX = true;
   List<Ingrediente> _ingredienteSelecionados = [];
   @override
   Widget build(BuildContext context) {

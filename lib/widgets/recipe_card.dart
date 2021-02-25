@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:morango_app/mo_rango_icons.dart';
 
 class RecipeCard extends StatelessWidget {
+  RecipeCard({this.nomeReceita, this.minTempoPreparo, this.maxTempoPreparo});
+
+  final String nomeReceita;
+  final String minTempoPreparo;
+  final String maxTempoPreparo;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
