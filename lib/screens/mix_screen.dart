@@ -69,7 +69,7 @@ class _MixScreenState extends State<MixScreen>
   }
 
   List<MultiSelectItem<dynamic>> itensParaColocar = [];
-  List<Ingrediente> _ingredienteSelecionados = [];
+  List<dynamic> _ingredienteSelecionados = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +114,7 @@ class _MixScreenState extends State<MixScreen>
                     child: Column(
                       children: <Widget>[
                         MultiSelectBottomSheetField(
-                          buttonIcon: Icon(Icons.arrow_downward),
+                          buttonIcon: Icon(Icons.arrow_downward,color: Colors.white,),
                           backgroundColor: Color.fromRGBO(255, 166, 166, 1),
                           unselectedColor: Colors.white,
                           cancelText: Text(
@@ -157,7 +157,7 @@ class _MixScreenState extends State<MixScreen>
                                 padding: EdgeInsets.all(10),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  "",
+                                  "Items Selecionados",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 15),
                                 ))
@@ -173,7 +173,10 @@ class _MixScreenState extends State<MixScreen>
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                         Navigator.of(context).pushNamed('/recipes');
+                       //print(_ingredienteSelecionados);
+                      },
                       color: Color.fromRGBO(110, 213, 161, 1),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

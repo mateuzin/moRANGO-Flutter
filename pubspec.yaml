@@ -47,7 +47,6 @@
     multi_select_flutter: ^3.1.8
     image_picker: ^0.6.3+4
 
-
   # For information on the generic Dart part of this file, see the
   # following page: https://dart.dev/tools/pub/pubspec
 

@@ -60,27 +60,22 @@ class RecipesScreen extends StatelessWidget {
                   ),
                 ),
               ), //**pergunta de ingredientes
-              Container(
-                padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
-                child: Wrap(
-                  children: [
-                    FilterCard(),
-                    FilterCard(),
-                    FilterCard(),
-                    FilterCard(),
-                    FilterCard(),
-                    FilterCard(),
-                  ],
-                ),
-              ), //ingredientes 2
+              // Container(
+              //   padding: EdgeInsets.fromLTRB(25, 6, 29, 14),
+              //   child: Wrap(
+              //     children: [
+              //       FilterCard(),
+              //       FilterCard(),
+              //       FilterCard(),
+              //       FilterCard(),
+              //       FilterCard(),
+              //       FilterCard(),
+              //     ],
+              //   ),
+              // ), //ingredientes 2
               Wrap(
                 children: [
-                  RecipeCard(),
-                  RecipeCard(),
-                  RecipeCard(),
-                  RecipeCard(),
-                  RecipeCard(),
-                  RecipeCard(),
+                  RecipeCard(nomeReceita: "Mouse de Limão",maxTempoPreparo: "20 min",minTempoPreparo: "15 min",urlFoto: "",),
                 ],
               )
             ],
