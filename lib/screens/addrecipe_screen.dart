@@ -108,8 +108,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
       'min': _minTempoDePreparoController.text,
       'max': _maxTempoDePreparoController.text,
       'date': DateTime.now(),
-      'video':
-          'https://www.youtube.com/watch?v=dGeEuyG_DIc&ab_channel=RickAstley-Topic',
+      'imagem': '$_image',
     });
 
     for (var bloco in blocosDeTexto) {
@@ -182,306 +181,324 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
       appBar: _addRecipeBar(),
       backgroundColor: Color.fromRGBO(255, 166, 166, 1),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _image == null
-                ? Text(
-                    'Sem Imagem no Momento',
-                    textAlign: TextAlign.center,
-                  )
-                : Image.file(_image),
-            FlatButton(
-              onPressed: getImage,
-              child: SizedBox(
-                width: 400,
-                height: 265,
-                child: Container(
-                  color: Colors.grey,
-                  child: Icon(Icons.add, size: 200, color: Colors.white),
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _image == null
+                  ? FlatButton(
+                onPressed:() {
+                  getImage();
+                  },
+                child: SizedBox(
+                  width: 400,
+                  height: 265,
+                  child: Container(
+                    color: Colors.grey,
+                    child: Icon(Icons.add, size: 200, color: Colors.white),
+                  ),
+                ),
+              )
+                  : Image.file(_image),
+              // FlatButton(
+              //   onPressed:() {
+              //     getImage();
+              //   },
+              //   child: SizedBox(
+              //     width: 400,
+              //     height: 265,
+              //     child: Container(
+              //       color: Colors.grey,
+              //       child: Icon(Icons.add, size: 200, color: Colors.white),
+              //     ),
+              //   ),
+              // ),
+
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
+                child: editandoDescricao
+                    ? Container(
+                  child: TextFormField(
+                    controller: _descricaoDaReceitaController,
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                        suffixIcon: FlatButton(
+                          child: Icon(Icons.close, color: Colors.red),
+                          onPressed: () {
+                            mudarEstadoEditandoDescricao();
+                          },
+                        ),
+                        hintText: 'Descrição da receita',
+                        hintStyle: TextStyle(
+                            color: Color.fromRGBO(80, 73, 73, 1),
+                            fontSize: 20),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Colors.black, width: 1.5),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: Colors.black, width: 1.5),
+                            borderRadius: BorderRadius.circular(10))),
+                  ),
+                )
+                    : FlatButton(
+                  onPressed: () {
+                    if (editandoDescricao) {
+                      setState(() {
+                        editandoDescricao = false;
+                      });
+                    } else {
+                      setState(() {
+                        editandoDescricao = true;
+                      });
+                    }
+                  },
+                  child: Text(
+                    "Descrição (clique para editar)",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Roboto",
+                        color: Color.fromRGBO(100, 36, 36, 1)
+                      /*color: Colors.white*/ //caso fique melhor como branco
+                    ),
+                  ),
                 ),
               ),
-            ),
-
-            Container(
-              padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
-              child: editandoDescricao
-                  ? Container(
-                      child: TextFormField(
-                        controller: _descricaoDaReceitaController,
-                        maxLines: 5,
-                        decoration: InputDecoration(
-                            suffixIcon: FlatButton(
-                              child: Icon(Icons.close, color: Colors.red),
-                              onPressed: () {
-                                mudarEstadoEditandoDescricao();
-                              },
-                            ),
-                            hintText: 'Descrição da receita',
-                            hintStyle: TextStyle(
-                                color: Color.fromRGBO(80, 73, 73, 1),
-                                fontSize: 20),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 1.5),
-                                borderRadius: BorderRadius.circular(10)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 1.5),
-                                borderRadius: BorderRadius.circular(10))),
+              Container(
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                      child: Text(
+                        "Adicionar bloco de texto",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(100, 36, 36, 1)),
+                      ),
+                    ),
+                    Flexible(
+                      child: RaisedButton(
+                        color: Colors.white,
+                        shape:
+                        CircleBorder(side: BorderSide(color: Colors.black)),
+                        child: Icon(Icons.add, size: 25, color: Colors.black),
+                        onPressed: () {
+                          adcionarBlocoDeTexto();
+                        },
                       ),
                     )
-                  : FlatButton(
-                      onPressed: () {
-                        if (editandoDescricao) {
-                          setState(() {
-                            editandoDescricao = false;
-                          });
-                        } else {
-                          setState(() {
-                            editandoDescricao = true;
-                          });
-                        }
-                      },
-                      child: Text(
-                        "Descrição (clique para editar)",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Roboto",
-                            color: Color.fromRGBO(100, 36, 36, 1)
-                            /*color: Colors.white*/ //caso fique melhor como branco
-                            ),
+                  ],
+                ),
+              ),
+
+              ...blocosDeTexto,
+
+              Container(
+                padding: EdgeInsets.fromLTRB(15, 45, 15, 0),
+                child: Text(
+                  "Tempo de preparo",
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(100, 36, 36, 1)),
+                ),
+              ), //tempo de preparo
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.fromLTRB(15, 10, 0, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 120,
+                      height: 45,
+                      child: TextFormField(
+                        textAlignVertical: TextAlignVertical.top,
+                        controller: _minTempoDePreparoController,
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.access_time_outlined,
+                                size: 20,
+                                color: Color.fromRGBO(255, 144, 144, 1)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide(color: Colors.black))),
+                        keyboardType: TextInputType.number,
                       ),
                     ),
-            ),
-            Container(
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                    child: Text(
-                      "Adicionar bloco de texto",
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(100, 36, 36, 1)),
+                    Text(" ~ "),
+                    SizedBox(
+                      width: 120,
+                      height: 45,
+                      child: TextFormField(
+                        textAlignVertical: TextAlignVertical.top,
+                        controller: _maxTempoDePreparoController,
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.access_time_outlined,
+                                size: 20,
+                                color: Color.fromRGBO(255, 144, 144, 1)),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide(color: Colors.black))),
+                        keyboardType: TextInputType.number,
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: RaisedButton(
-                      color: Colors.white,
-                      shape:
-                          CircleBorder(side: BorderSide(color: Colors.black)),
-                      child: Icon(Icons.add, size: 25, color: Colors.black),
-                      onPressed: () {
-                        adcionarBlocoDeTexto();
-                      },
-                    ),
-                  )
-                ],
+                  ],
+                ),
               ),
-            ),
-
-            ...blocosDeTexto,
-
-            Container(
-              padding: EdgeInsets.fromLTRB(15, 45, 15, 0),
-              child: Text(
-                "Tempo de preparo",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(100, 36, 36, 1)),
-              ),
-            ), //tempo de preparo
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.fromLTRB(15, 10, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 120,
-                    height: 45,
-                    child: TextFormField(
-                      textAlignVertical: TextAlignVertical.top,
-                      controller: _minTempoDePreparoController,
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      decoration: InputDecoration(
-                          suffixIcon: Icon(Icons.access_time_outlined,
-                              size: 20,
-                              color: Color.fromRGBO(255, 144, 144, 1)),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black))),
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                  Text(" ~ "),
-                  SizedBox(
-                    width: 120,
-                    height: 45,
-                    child: TextFormField(
-                      textAlignVertical: TextAlignVertical.top,
-                      controller: _maxTempoDePreparoController,
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                      decoration: InputDecoration(
-                          suffixIcon: Icon(Icons.access_time_outlined,
-                              size: 20,
-                              color: Color.fromRGBO(255, 144, 144, 1)),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black))),
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
-              child: Text(
-                "Título da receita",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(100, 36, 36, 1)),
-              ),
-            ), //título da receita
-            Container(
-              padding: EdgeInsets.fromLTRB(15, 6, 15, 20),
-              child: SizedBox(
-                width: 350,
-                height: 40,
-                child: TextFormField(
-                  controller: _tituloController,
-                  style: TextStyle(color: Colors.black),
-                  cursorColor: Colors.white,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      borderSide: BorderSide(
-                        color: Colors.black,
+              Container(
+                padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
+                child: Text(
+                  "Título da receita",
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(100, 36, 36, 1)),
+                ),
+              ), //título da receita
+              Container(
+                padding: EdgeInsets.fromLTRB(15, 6, 15, 20),
+                child: SizedBox(
+                  width: 350,
+                  height: 40,
+                  child: TextFormField(
+                    controller: _tituloController,
+                    style: TextStyle(color: Colors.black),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 25),
-              child: Text(
-                "Adcione os ingredientes que serão utilizados nessa receita para que nossos usuários possam encontrá-la",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: "Roboto",
-                    color: Color.fromRGBO(0, 0, 0, 80)),
-              ),
-            ),
-            Container(
-
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: Color.fromRGBO(110, 213, 161, 1),
-                border: Border.all(
-                  color: Color.fromRGBO(110, 213, 161, 1),
-                  width: 2,
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 0, 10, 25),
+                child: Text(
+                  "Adcione os ingredientes que serão utilizados nessa receita para que nossos usuários possam encontrá-la",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: "Roboto",
+                      color: Color.fromRGBO(0, 0, 0, 80)),
                 ),
               ),
-              child: Column(
-                children: <Widget>[
-                  MultiSelectBottomSheetField(
-                    buttonIcon: Icon(Icons.arrow_downward),
-                    backgroundColor: Color.fromRGBO(255, 166, 166, 1),
-                    unselectedColor: Colors.white,
-                    cancelText: Text(
-                      "CANCELAR",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    confirmText: Text(
-                      "OK",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    initialChildSize: 0.4,
-                    listType: MultiSelectListType.CHIP,
-                    searchable: true,
-                    buttonText: Text(
-                      "Coloque os ingredientes que possui!",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                    title: Text("Ingredientes",
-                        style: TextStyle(color: Colors.white, fontSize: 20)),
-                    items: itensParaColocar,
-                    onConfirm: (values) {
-                      _ingredienteSelecionados = values;
-                    },
-                    chipDisplay: MultiSelectChipDisplay(
-                      textStyle: TextStyle(
-                        color: Color.fromRGBO(255, 166, 166, 1),
-                      ),
-                      chipColor: Colors.white,
-                      onTap: (value) {
-                        setState(() {
-                          _ingredienteSelecionados.remove(value);
-                        });
-                      },
-                    ),
-                  ),
-                  _ingredienteSelecionados == null ||
-                          _ingredienteSelecionados.isEmpty
-                      ? Container(
-                          padding: EdgeInsets.all(10),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "",
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ))
-                      : Container(),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 85),
-              child: SizedBox(
-                width: 175,
-                height: 60,
-                child: RaisedButton(
+              Container(
+
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
                   color: Color.fromRGBO(110, 213, 161, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    /* side: BorderSide(color: Colors.black)*/
+                  border: Border.all(
+                    color: Color.fromRGBO(110, 213, 161, 1),
+                    width: 2,
                   ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.arrow_forward,
-                            size: 40, color: Colors.white),
-                        Flexible(
-                            child: Text(
-                          "Enviar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Roboto",
-                              fontSize: 20),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    MultiSelectBottomSheetField(
+                      buttonIcon: Icon(Icons.arrow_downward),
+                      backgroundColor: Color.fromRGBO(255, 166, 166, 1),
+                      unselectedColor: Colors.white,
+                      cancelText: Text(
+                        "CANCELAR",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      confirmText: Text(
+                        "OK",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      initialChildSize: 0.4,
+                      listType: MultiSelectListType.CHIP,
+                      searchable: true,
+                      buttonText: Text(
+                        "Coloque os ingredientes que possui!",
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                      title: Text("Ingredientes",
+                          style: TextStyle(color: Colors.white, fontSize: 20)),
+                      items: itensParaColocar,
+                      onConfirm: (values) {
+                        _ingredienteSelecionados = values;
+                      },
+                      chipDisplay: MultiSelectChipDisplay(
+                        textStyle: TextStyle(
+                          color: Color.fromRGBO(255, 166, 166, 1),
+                        ),
+                        chipColor: Colors.white,
+                        onTap: (value) {
+                          setState(() {
+                            _ingredienteSelecionados.remove(value);
+                          });
+                        },
+                      ),
+                    ),
+                    _ingredienteSelecionados == null ||
+                        _ingredienteSelecionados.isEmpty
+                        ? Container(
+                        padding: EdgeInsets.all(10),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "",
+                          style: TextStyle(color: Colors.white, fontSize: 15),
                         ))
-                      ]),
-                  onPressed: () {
-                    adcionarReceita();
-                  },
+                        : Container(),
+                  ],
                 ),
               ),
-            ),
-          ],
-        ),
+
+              Divider(color: Colors.transparent,),
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 85),
+                child: SizedBox(
+                  width: 175,
+                  height: 60,
+                  child: RaisedButton(
+                    color: Color.fromRGBO(110, 213, 161, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      /* side: BorderSide(color: Colors.black)*/
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.arrow_forward,
+                              size: 40, color: Colors.white),
+                          Flexible(
+                              child: Text(
+                                "Enviar",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Roboto",
+                                    fontSize: 20),
+                              ))
+                        ]),
+                    onPressed: () {
+                      adcionarReceita();
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
       ),
       bottomNavigationBar: CustomBottomNavigationBar(),
     );
