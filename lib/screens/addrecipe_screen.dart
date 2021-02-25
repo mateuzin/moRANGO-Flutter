@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:after_layout/after_layout.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class AddRecipeScreen extends StatefulWidget {
   @override
@@ -166,6 +168,14 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
     });
   }
 
+  File _image;
+  Future getImage() async {
+    final image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,15 +185,24 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              width: 375,
-              height: 283,
-              child: RaisedButton(
-                color: Color.fromRGBO(196, 196, 196, 1),
-                child: Icon(Icons.add, size: 200, color: Colors.white),
-                onPressed: () {},
+            _image == null
+                ? Text(
+                    'Sem Imagem no Momento',
+                    textAlign: TextAlign.center,
+                  )
+                : Image.file(_image),
+            FlatButton(
+              onPressed: getImage,
+              child: SizedBox(
+                width: 400,
+                height: 265,
+                child: Container(
+                  color: Colors.grey,
+                  child: Icon(Icons.add, size: 200, color: Colors.white),
+                ),
               ),
-            ), //caixinha de adicionar foto da receita
+            ),
+
             Container(
               padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
               child: editandoDescricao
