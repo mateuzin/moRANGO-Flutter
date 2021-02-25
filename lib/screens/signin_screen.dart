@@ -179,8 +179,9 @@ class _SigninScreenState extends State<SigninScreen> {
                         ),
                       ), //botão de entrar
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        width: double.infinity,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset("images/linha_preta.png"),
                             Text(
