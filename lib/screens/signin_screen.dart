@@ -178,23 +178,19 @@ class _SigninScreenState extends State<SigninScreen> {
                               )),
                         ),
                       ), //botão de entrar
-
-                      Center(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                            children: <Widget>[
-                              Image.asset("images/linha_preta.png"),
-                              Text(
-                                " OU ",
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              Image.asset("images/linha_preta.png"),
-                            ],
-                          ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset("images/linha_preta.png"),
+                            Text(
+                              " OU ",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Image.asset("images/linha_preta.png"),
+                          ],
                         ),
                       ),
-
                       Container(
                         child: Text(
                           "Faça login com suas redes sociais",
