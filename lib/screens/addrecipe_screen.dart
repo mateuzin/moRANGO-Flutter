@@ -164,7 +164,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                     ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Row(
                 children: [
                   Container(
@@ -178,7 +177,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                           color: Color.fromRGBO(100, 36, 36, 1)),
                     ),
                   ),
-                  SizedBox(
+                  Flexible(
                     child: RaisedButton(
                       color: Colors.white,
                       shape:
@@ -192,6 +191,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 ],
               ),
             ),
+
             ...blocosDeTexto,
 
             Container(
@@ -296,37 +296,38 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                     color: Color.fromRGBO(0, 0, 0, 80)),
               ),
             ),
-
-            Container(
-                padding: EdgeInsets.fromLTRB(120, 0, 120, 100),
-                child: SizedBox(
-                  width: 165,
-                  height: 60,
-                  child: RaisedButton(
-                    color: Color.fromRGBO(110, 213, 161, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      /* side: BorderSide(color: Colors.black)*/
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.arrow_forward,
-                            size: 40, color: Colors.white),
-                        Text(
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 85),
+              child: SizedBox(
+                width: 175,
+                height: 60,
+                child: RaisedButton(
+                  color: Color.fromRGBO(110, 213, 161, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    /* side: BorderSide(color: Colors.black)*/
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_forward, size: 40, color: Colors.white),
+                      Flexible(
+                        child: Text(
                           "Enviar",
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: "Roboto",
                               fontSize: 20),
-                        )
-                      ],
-                    ),
-                    onPressed: () {
-                      adcionarReceita();
-                    },
+                        ),
+                      ),
+                    ],
                   ),
-                ))
+                  onPressed: () {
+                    adcionarReceita();
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
