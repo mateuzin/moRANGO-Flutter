@@ -152,6 +152,8 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),//botão de manter conectado*/
 
                       Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: 55),
                         //botão de entrar
                         child: RaisedButton(
                           color: Color.fromRGBO(0, 194, 122, 1),
