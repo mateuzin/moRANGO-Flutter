@@ -151,33 +151,27 @@ class _SigninScreenState extends State<SigninScreen> {
                             ),
                           ),//botão de manter conectado*/
 
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 55),
-                        //botão de entrar
-                        child: RaisedButton(
-                          color: Color.fromRGBO(0, 194, 122, 1),
-                          child: Text(
-                            "ENTRAR",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              model.signIn(
-                                email: _emailController.text,
-                                pass: _passController.text,
-                                onSuccess: _onSuccess,
-                                onFail: _onFail,
-                              );
-                            }
+                      Container( //botão de entrar
+                        child:
+                        RaisedButton(
+                          color: Color.fromRGBO(0,194,122,1),
+                          child: Text("ENTRAR",style: TextStyle(color: Colors.white),),
+                          onPressed: (){if(_formKey.currentState.validate()){
+                            model.signIn(
+                              email: _emailController.text,
+                              pass: _passController.text,
+                              onSuccess: _onSuccess,
+                              onFail: _onFail,
+                            );
+                          }
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(
-                                color: Color.fromRGBO(0, 194, 122, 1),
-                              )),
+                              side: BorderSide(color: Color.fromRGBO(0,194,122,1),)
+                          ),
                         ),
-                      ), //botão de entrar
+                      ),//botão de entrar
+
                       Container(
                         width: double.infinity,
                         child: Row(
@@ -205,7 +199,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                       Container(
                         //icones do facebook e google
-                        padding: EdgeInsets.symmetric(horizontal: 35),
+                        padding: EdgeInsets.fromLTRB(35,50,35,0),
                         child: Column(
                           children: [
                             SignInButton(
@@ -237,7 +231,7 @@ class _SigninScreenState extends State<SigninScreen> {
 
                       Container(
                         //botão de cadastro
-                        padding: EdgeInsets.fromLTRB(20, 20, 20, 140),
+                        padding: EdgeInsets.fromLTRB(20, 20, 20, 100),
                         child: SizedBox(
                           width: 250.0,
                           child: RaisedButton(

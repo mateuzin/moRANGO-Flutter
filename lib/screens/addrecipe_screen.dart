@@ -369,6 +369,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen>
               ),
             ),
             Container(
+
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(25)),
                 color: Color.fromRGBO(110, 213, 161, 1),
